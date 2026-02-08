@@ -645,6 +645,38 @@
       </div>
     </section>
 
+    <!-- Try it now -->
+    <section class="pw-section pw-reveal" id="try" aria-labelledby="try-heading">
+      <div class="pw-section-title">
+        <h2 id="try-heading">Try it on your own site</h2>
+        <p>Generate a ready-to-paste snippet and preview a personalized demo.</p>
+      </div>
+      <div class="pw-install-box" style="max-width:760px;">
+        <div class="pw-install-head">
+          <div class="pw-install-dots"><span></span><span></span><span></span></div>
+          <button type="button" class="pw-btn-ghost" style="margin:0;padding:6px 14px;font-size:0.8rem;" aria-label="Copy personalized snippet" onclick="window.pwCopySnippet()">Copy</button>
+        </div>
+        <div style="padding:20px 24px;display:grid;gap:12px;">
+          <label style="font-size:0.85rem;color:#a1a1aa;">Pick an intent</label>
+          <select id="pw-intent" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:#0c0c12;color:#fafafa;">
+            <option value="buy_now">Buy Now</option>
+            <option value="compare">Compare</option>
+            <option value="use_case">Use Case (Gaming)</option>
+            <option value="budget">Budget</option>
+            <option value="impulse">Impulse</option>
+          </select>
+          <label style="font-size:0.85rem;color:#a1a1aa;">Optional query (overrides intent)</label>
+          <input id="pw-query" placeholder="best 4k monitor vs 2026" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:#0c0c12;color:#fafafa;" />
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a id="pw-demo-link" href="demo/store.html" class="pw-btn-primary" style="margin-top:6px;">Open Demo</a>
+            <a href="#demo" class="pw-btn-ghost" style="margin-top:6px;">View Install Snippet</a>
+          </div>
+        </div>
+        <pre class="pw-install-code" id="pw-snippet" style="margin:0;"><span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://personaweb.ai/personaweb.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script&gt;</span>PersonaWeb.init({<span class="attr">debug</span>:<span class="str">false</span>});<span class="tag">&lt;/script&gt;</span></pre>
+      </div>
+    </section>
+
     <!-- Install / Demo -->
     <section class="pw-section pw-reveal" id="demo" aria-labelledby="demo-heading">
       <div class="pw-section-title">
@@ -792,6 +824,47 @@
         }, { threshold: 0.5 });
         io2.observe(proofNum);
       }
+
+      function buildDemoHref() {
+        var intent = (document.getElementById('pw-intent') || {}).value || 'buy_now';
+        var query = (document.getElementById('pw-query') || {}).value || '';
+        var url = 'demo/store.html';
+        if (query.trim()) {
+          url += '?q=' + encodeURIComponent(query.trim());
+        } else if (intent) {
+          if (intent === 'use_case') {
+            url += '?persona=gaming';
+          } else if (intent === 'compare') {
+            url += '?q=' + encodeURIComponent('best monitor vs 2026');
+          } else if (intent === 'budget') {
+            url += '?q=' + encodeURIComponent('cheap 144hz');
+          } else if (intent === 'impulse') {
+            url += '?q=' + encodeURIComponent('flash sale ends soon');
+          } else {
+            url += '?intent=' + encodeURIComponent(intent);
+          }
+        }
+        return url;
+      }
+
+      function updateTrySection() {
+        var link = document.getElementById('pw-demo-link');
+        if (link) link.href = buildDemoHref();
+      }
+
+      window.pwCopySnippet = function() {
+        var snippet = "<script src='https://personaweb.ai/personaweb.js'></script>\n" +
+          "<script>PersonaWeb.init({debug:false});</script>";
+        try {
+          navigator.clipboard.writeText(snippet);
+        } catch (e) { /* ignore */ }
+      };
+
+      var intentEl = document.getElementById('pw-intent');
+      var queryEl = document.getElementById('pw-query');
+      if (intentEl) intentEl.addEventListener('change', updateTrySection);
+      if (queryEl) queryEl.addEventListener('input', updateTrySection);
+      updateTrySection();
 
       console.log('%c PersonaWeb.ai ', 'background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 4px;', 'One script tag. Every visitor sees a different website.');
     })();
