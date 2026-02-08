@@ -791,7 +791,17 @@
       }, duration + 400);
 
       var nav = document.querySelector('.pw-nav');
-      if (nav) window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
+      if (nav) {
+        var navTick = false;
+        window.addEventListener('scroll', function() {
+          if (navTick) return;
+          navTick = true;
+          requestAnimationFrame(function() {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+            navTick = false;
+          });
+        }, { passive: true });
+      }
 
       var reveals = document.querySelectorAll('.pw-reveal');
       if (typeof IntersectionObserver !== 'undefined') {
@@ -856,8 +866,14 @@
         var snippet = "<script src='https://personaweb.ai/personaweb.js'></script>\n" +
           "<script>PersonaWeb.init({debug:false});</script>";
         try {
-          navigator.clipboard.writeText(snippet);
-        } catch (e) { /* ignore */ }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(snippet);
+          } else {
+            window.prompt('Copy snippet:', snippet);
+          }
+        } catch (e) {
+          window.prompt('Copy snippet:', snippet);
+        }
       };
 
       var intentEl = document.getElementById('pw-intent');
