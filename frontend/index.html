@@ -585,20 +585,22 @@
     <section class="pw-section pw-reveal" id="solution" aria-labelledby="solution-heading">
       <div class="pw-section-title">
         <h2 id="solution-heading">The solution: one script tag</h2>
-        <p>Add one line. AI analyzes 12+ signals in real-time. Instantly serves the perfect hero.</p>
+        <p>Add one line. AuraCore analyzes multiple signals in real time and serves the right hero instantly.</p>
       </div>
       <div class="pw-solution-grid">
         <div class="pw-code-block">
 <span class="com">&lt;!-- Add before &lt;/body&gt; --&gt;</span>
 <span class="kw">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://personaweb.ai/personaweb.js"</span><span class="kw">&gt;&lt;/script&gt;</span>
-<span class="com">&lt;!-- That's it. --&gt;</span>
+<span class="kw">&lt;script&gt;</span>
+  PersonaWeb.init({ <span class="attr">debug</span>: <span class="str">false</span> });
+<span class="kw">&lt;/script&gt;</span>
         </div>
         <div>
           <ul class="pw-solution-list">
-            <li>AI analyzes UTM params, referrer, page context</li>
-            <li>4 intent variants: Buyer, Researcher, Gamer, Deal Hunter</li>
-            <li>Explainable decisions — no black box</li>
-            <li>Zero dependencies. &lt;1s to personalize.</li>
+            <li>Signals: URL/UTM, referrer, persona, behavior</li>
+            <li>4 intent variants for the demo (extensible)</li>
+            <li>Explainable decisions with human‑readable reasons</li>
+            <li>Safe fallback if signals are missing</li>
           </ul>
         </div>
       </div>
@@ -608,23 +610,23 @@
     <section class="pw-section pw-reveal" id="how" aria-labelledby="how-heading">
       <div class="pw-section-title">
         <h2 id="how-heading">How it works</h2>
-        <p>Signal detection → AI decision → instant injection.</p>
+        <p>Signal detection → intent decision → safe DOM injection.</p>
       </div>
       <div class="pw-steps">
         <div class="pw-step">
           <div class="pw-step-num">1</div>
           <h3>Signal detection</h3>
-          <p>UTM, referrer, and page context are captured in real-time. No cookies required.</p>
+          <p>URL/UTM, referrer, persona, and behavior are captured. No cookies required.</p>
         </div>
         <div class="pw-step">
           <div class="pw-step-num">2</div>
-          <h3>AI decision</h3>
-          <p>Weighted scoring picks the best intent. Every decision includes a human-readable reason.</p>
+          <h3>Decision engine</h3>
+          <p>Weighted scoring selects intent, template, image, and CTA with a clear reason string.</p>
         </div>
         <div class="pw-step">
           <div class="pw-step-num">3</div>
           <h3>Instant injection</h3>
-          <p>Hero section transforms with shimmer → cross-fade. Typically under 1 second.</p>
+          <p>Hero and supporting copy update safely, with graceful fallback.</p>
         </div>
       </div>
     </section>
@@ -633,7 +635,7 @@
     <section class="pw-section pw-reveal" id="templates" aria-labelledby="templates-heading">
       <div class="pw-section-title">
         <h2 id="templates-heading">Four variants. One engine.</h2>
-        <p>Each template has its own theme, headline, image, and CTA.</p>
+        <p>Each template has distinct intent, visuals, and CTA.</p>
       </div>
       <div class="pw-templates">
         <div class="pw-tpl"><div class="pw-tpl-icon">🏆</div><h3>Direct Buyer</h3><p>Confident, conversion-focused. "Add to Cart" hero.</p></div>
@@ -647,14 +649,15 @@
     <section class="pw-section pw-reveal" id="demo" aria-labelledby="demo-heading">
       <div class="pw-section-title">
         <h2 id="demo-heading">Install in 30 seconds</h2>
-        <p>Paste this into your HTML. PersonaWeb handles the rest.</p>
+        <p>Paste this into your HTML. PersonaWeb handles intent and safe personalization.</p>
       </div>
       <div class="pw-install-box">
         <div class="pw-install-head">
           <div class="pw-install-dots"><span></span><span></span><span></span></div>
-          <button type="button" class="pw-btn-ghost" style="margin:0;padding:6px 14px;font-size:0.8rem;" aria-label="Copy script snippet to clipboard" onclick="navigator.clipboard.writeText('<script src=\'https://personaweb.ai/personaweb.js\'><\/script>');this.textContent='Copied!';setTimeout(function(){this.textContent='Copy';}.bind(this),1500)">Copy</button>
+          <button type="button" class="pw-btn-ghost" style="margin:0;padding:6px 14px;font-size:0.8rem;" aria-label="Copy script snippet to clipboard" onclick="navigator.clipboard.writeText('<script src=\\'https://personaweb.ai/personaweb.js\\'><\\/script>\\n<script>PersonaWeb.init({debug:false});<\\/script>');this.textContent='Copied!';setTimeout(function(){this.textContent='Copy';}.bind(this),1500)">Copy</button>
         </div>
-        <pre class="pw-install-code"><span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://personaweb.ai/personaweb.js"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+        <pre class="pw-install-code"><span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://personaweb.ai/personaweb.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script&gt;</span>PersonaWeb.init({<span class="attr">debug</span>:<span class="str">false</span>});<span class="tag">&lt;/script&gt;</span></pre>
       </div>
       <div class="pw-install-cta">
         <a href="demo/store.html" class="pw-btn-primary">Try Live Demo</a>
@@ -665,14 +668,14 @@
     <!-- Technical -->
     <section class="pw-section pw-reveal" id="tech" aria-labelledby="tech-heading">
       <div class="pw-section-title">
-        <h2 id="tech-heading">Built for production</h2>
-        <p>Zero dependencies. Explainable AI. Safe by default.</p>
+        <h2 id="tech-heading">Built for clarity</h2>
+        <p>Zero dependencies. Explainable decisions. Safe by default.</p>
       </div>
       <div class="pw-badges">
-        <span class="pw-badge"><strong>0</strong> dependencies</span>
-        <span class="pw-badge">&lt;1s injection</span>
-        <span class="pw-badge">WCAG 2.1 AA</span>
-        <span class="pw-badge">.pw- namespace</span>
+        <span class="pw-badge"><strong>0</strong> runtime dependencies</span>
+        <span class="pw-badge">&lt;1s personalization</span>
+        <span class="pw-badge">Explainable intent</span>
+        <span class="pw-badge">Safe fallback</span>
       </div>
     </section>
 
