@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PersonaWeb.ai — Every visitor sees a different website</title>
+  <meta name="description" content="AI that personalizes your site in real-time. One script tag. Zero dependencies. Instant magic.">
+  <meta property="og:title" content="PersonaWeb.ai — AI-Powered Website Personalization">
+  <meta property="og:description" content="Every visitor sees a different website. One script tag. Instant magic.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       PersonaWeb.ai — Premium Landing · Best-in-class design
+       Sora + Inter · Deep gradients · Glass · Refined motion
+       ═══════════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #06060a;
+      --bg-elevated: #0c0c12;
+      --surface: rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.06);
+      --border-strong: rgba(255,255,255,0.12);
+      --primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+      --primary-solid: #6366f1;
+      --primary-glow: rgba(99,102,241,0.4);
+      --secondary: #22d3ee;
+      --secondary-dim: rgba(34,211,238,0.15);
+      --success: #10b981;
+      --text: #fafafa;
+      --text2: #a1a1aa;
+      --text3: #52525b;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-head: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --radius: 14px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --blur: 24px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.25);
+      --shadow-lg: 0 24px 48px rgba(0,0,0,0.4);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ═══ Keyframes ─── (no-preference only for heavy motion) */
+    @keyframes pw-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes pw-float-slow { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.01); } }
+    @keyframes pw-glow-pulse { 0%, 100% { opacity: 0.6; filter: brightness(1); } 50% { opacity: 1; filter: brightness(1.15); } }
+    @keyframes pw-shine { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+    @keyframes pw-gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes pw-fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pw-scale-in { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pw-bounce-subtle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes pw-orb { 0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; } 33% { transform: translate(10px, -15px) scale(1.05); opacity: 0.6; } 66% { transform: translate(-5px, 10px) scale(0.98); opacity: 0.5; } }
+    @keyframes pw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes pw-cta-glow {
+      0%, 100% { box-shadow: 0 8px 32px var(--primary-glow); }
+      50% { box-shadow: 0 8px 48px rgba(99,102,241,0.5), 0 0 60px rgba(99,102,241,0.15); }
+    }
+    @keyframes pw-hero-glow {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    @keyframes pw-dot-grid { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.5; } }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font); background: var(--bg); color: var(--text);
+      line-height: 1.65; overflow-x: hidden; font-size: 17px; -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+      background-size: 40px 40px; opacity: 0.4;
+    }
+    @supports not (background-clip: text) {
+      .pw-hero h1 { color: #e0e7ff; }
+    }
+    a { color: var(--primary-solid); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+    .skip-link { position: absolute; top: -100px; left: 16px; z-index: 9999; padding: 12px 20px; background: var(--primary-solid); color: #fff; border-radius: var(--radius); font-weight: 600; transition: top 0.2s; }
+    .skip-link:focus { top: 16px; }
+
+    /* ── Pre-loader ── */
+    #pw-loader {
+      position: fixed; inset: 0; z-index: 10000; background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+      transition: opacity 0.5s var(--ease), visibility 0.5s;
+    }
+    #pw-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .pw-loader-logo { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+    .pw-loader-logo span { background: var(--primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    @media (prefers-reduced-motion: no-preference) {
+      .pw-loader-logo { animation: pw-scale-in 0.5s var(--spring) 0.2s both; }
+      .pw-loader-text { animation: pw-fade-up 0.4s var(--ease) 0.4s both; }
+    }
+    .pw-loader-bar { width: 200px; height: 4px; background: var(--surface); border-radius: 2px; overflow: hidden; }
+    .pw-loader-fill { height: 100%; width: 0; background: linear-gradient(90deg, #6366f1, #a855f7); border-radius: 2px; transition: width 0.1s linear; }
+    .pw-loader-text { font-size: 0.8rem; color: var(--text3); }
+
+    /* ── Nav ── */
+    .pw-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(6,6,10,0.72); backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
+      border-bottom: 1px solid var(--border); transition: background 0.4s var(--ease), border-color 0.4s;
+    }
+    .pw-nav.scrolled { background: rgba(6,6,10,0.92); border-bottom-color: var(--border-strong); }
+    .pw-nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .pw-logo { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text); transition: opacity 0.2s; }
+    .pw-logo:hover { opacity: 0.9; }
+    .pw-logo span { background: var(--primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .pw-nav-links { display: flex; gap: 36px; list-style: none; }
+    .pw-nav-links a {
+      font-size: 0.9rem; font-weight: 500; color: var(--text2);
+      transition: color 0.25s var(--ease), transform 0.25s var(--ease);
+      letter-spacing: 0.01em; position: relative;
+    }
+    .pw-nav-links a:hover { color: var(--text); }
+    @media (prefers-reduced-motion: no-preference) {
+      .pw-nav-links a:hover { transform: translateY(-1px); }
+      .pw-nav-links a::after {
+        content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px;
+        background: var(--primary-solid); transition: width 0.3s var(--ease);
+      }
+      .pw-nav-links a:hover::after { width: 100%; }
+    }
+    .pw-nav-cta {
+      padding: 12px 24px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center;
+      background: var(--primary); color: #fff; border: none; border-radius: var(--radius);
+      font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em;
+      transition: transform 0.25s var(--spring), box-shadow 0.25s, filter 0.2s;
+    }
+    .pw-nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px var(--primary-glow); text-decoration: none; color: #fff; filter: brightness(1.05); }
+
+    /* ── Hero ── */
+    .pw-hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 64px;
+      max-width: 1240px; margin: 0 auto; padding: 140px 28px 100px; position: relative;
+    }
+    .pw-hero::before {
+      content: ''; position: absolute; top: -40%; right: -20%; width: 90%; height: 140%;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .pw-hero::after {
+      content: ''; position: absolute; bottom: -20%; left: -10%; width: 50%; height: 60%;
+      background: radial-gradient(ellipse at center, rgba(34,211,238,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .pw-hero-content { position: relative; z-index: 1; }
+    @media (prefers-reduced-motion: no-preference) {
+      .pw-hero-badge { animation: pw-fade-up 0.7s var(--ease) both; }
+      .pw-hero h1 { animation: pw-fade-up 0.8s var(--ease) 0.1s both; }
+      .pw-hero h2 { animation: pw-fade-up 0.8s var(--ease) 0.2s both; }
+      .pw-hero-sub { animation: pw-fade-up 0.8s var(--ease) 0.3s both; }
+      .pw-hero-cta { animation: pw-fade-up 0.8s var(--ease) 0.45s both; }
+      .pw-hero-badge-dot { animation: pw-pulse 2s ease-in-out infinite 0.5s; }
+      .pw-hero-visual { animation: pw-scale-in 1s var(--spring) 0.2s both; }
+      .pw-hero-browser { animation: pw-float-slow 6s ease-in-out infinite; animation-delay: 1s; }
+      .pw-hero-persona:nth-child(1) { animation: pw-scale-in 0.6s var(--spring) 0.6s both, pw-bounce-subtle 3.5s ease-in-out infinite 1.3s; }
+      .pw-hero-persona:nth-child(2) { animation: pw-scale-in 0.6s var(--spring) 0.75s both, pw-bounce-subtle 3.5s ease-in-out infinite 1.5s; }
+      .pw-hero-persona:nth-child(3) { animation: pw-scale-in 0.6s var(--spring) 0.9s both, pw-bounce-subtle 3.5s ease-in-out infinite 1.7s; }
+      .pw-hero-cta { animation: pw-fade-up 0.8s var(--ease) 0.45s both, pw-cta-glow 3s ease-in-out infinite 1.5s; }
+      .pw-hero::before { animation: pw-hero-glow 8s ease-in-out infinite; }
+      body::before { animation: pw-dot-grid 6s ease-in-out infinite; }
+    }
+    .pw-hero-badge {
+      display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--secondary); background: var(--secondary-dim); border: 1px solid rgba(34,211,238,0.25);
+      margin-bottom: 24px;
+    }
+    .pw-hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success); }
+    .pw-hero h1 {
+      font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700;
+      line-height: 1.08; letter-spacing: -0.035em; margin-bottom: 16px; color: var(--text);
+      background: linear-gradient(180deg, #fff 0%, #e0e7ff 40%, #c4b5fd 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .pw-hero h2 { font-family: var(--font); font-size: 1.3rem; font-weight: 500; color: var(--text2); margin-bottom: 20px; letter-spacing: -0.01em; }
+    .pw-hero-sub { font-size: 1.05rem; color: var(--text3); margin-bottom: 32px; max-width: 420px; line-height: 1.65; }
+    .pw-hero-cta {
+      display: inline-flex; align-items: center; gap: 10px; padding: 18px 32px; min-height: 44px; box-sizing: border-box;
+      background: var(--primary); color: #fff; border: none; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.25s var(--spring), box-shadow 0.25s, filter 0.2s;
+      text-decoration: none; font-family: var(--font); box-shadow: 0 8px 32px var(--primary-glow);
+    }
+    .pw-hero-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 40px var(--primary-glow); text-decoration: none; color: #fff; filter: brightness(1.08); }
+    .pw-hero-visual { position: relative; z-index: 1; }
+    .pw-hero-browser {
+      background: linear-gradient(180deg, var(--bg-elevated) 0%, rgba(12,12,18,0.95) 100%);
+      border: 1px solid var(--border-strong); border-radius: var(--radius-xl);
+      overflow: hidden; box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,255,255,0.03) inset;
+    }
+    .pw-hero-browser-bar { height: 44px; background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 20px; gap: 10px; }
+    .pw-hero-browser-bar span { width: 12px; height: 12px; border-radius: 50%; }
+    .pw-hero-browser-bar span:nth-child(1) { background: #ef4444; }
+    .pw-hero-browser-bar span:nth-child(2) { background: #eab308; }
+    .pw-hero-browser-bar span:nth-child(3) { background: #22c55e; }
+    .pw-hero-browser-body {
+      height: 300px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(180deg, rgba(99,102,241,0.06) 0%, transparent 45%);
+      position: relative;
+    }
+    .pw-hero-personas { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding: 28px; }
+    .pw-hero-persona {
+      width: 80px; height: 80px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 600; color: var(--text2); background: var(--surface);
+      border: 1px solid var(--border); transition: all 0.35s var(--ease);
+    }
+    .pw-hero-persona:hover {
+      border-color: rgba(99,102,241,0.4); transform: translateY(-4px) scale(1.02);
+      background: var(--surface-hover); color: var(--text); box-shadow: var(--shadow);
+    }
+    .pw-hero-persona span { font-size: 1.75rem; margin-bottom: 6px; }
+    .pw-hero-label {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: var(--text3);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .pw-hero-label { animation: pw-fade-up 0.8s var(--ease) 1s both; }
+    }
+
+    /* ── Section common ── */
+    .pw-section { max-width: 1200px; margin: 0 auto; padding: 100px 28px; }
+    .pw-section-title { text-align: center; margin-bottom: 56px; }
+    .pw-section-title h2 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 3.2vw, 2.5rem); font-weight: 700;
+      letter-spacing: -0.03em; color: var(--text); margin-bottom: 12px;
+    }
+    .pw-section-title p { font-size: 1.05rem; color: var(--text2); max-width: 540px; margin: 0 auto; line-height: 1.65; }
+
+    /* ── Problem ── */
+    .pw-problem { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .pw-problem-left { filter: grayscale(0.5); opacity: 0.88; }
+    .pw-problem-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 32px; margin-bottom: 20px; transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pw-problem-card:hover { border-color: var(--border-strong); }
+    .pw-problem-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+    .pw-problem-card p { font-size: 0.95rem; color: var(--text3); line-height: 1.55; }
+    .pw-problem-right .pw-problem-card { filter: none; opacity: 1; border-color: rgba(99,102,241,0.2); }
+    .pw-problem-right .pw-problem-card:hover { border-color: rgba(99,102,241,0.35); box-shadow: 0 8px 32px rgba(99,102,241,0.08); }
+    .pw-problem-right .pw-problem-card h3 { color: var(--secondary); }
+
+    /* ── Solution ── */
+    .pw-solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .pw-code-block {
+      background: var(--bg-elevated); border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
+      padding: 28px; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.85; color: var(--text2);
+      white-space: pre-wrap; word-break: break-all; overflow-x: auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    }
+    .pw-code-block .kw, .pw-code-block .tag { color: #c678dd; }
+    .pw-code-block .attr { color: #61afef; }
+    .pw-code-block .str { color: #98c379; }
+    .pw-code-block .com { color: var(--text3); }
+    .pw-solution-list { list-style: none; }
+    .pw-solution-list li { padding: 12px 0; padding-left: 28px; position: relative; color: var(--text2); font-size: 1rem; }
+    .pw-solution-list li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: 700; }
+
+    /* ── How it works ── */
+    .pw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .pw-step {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 36px 28px; text-align: center; transition: all 0.35s var(--ease);
+    }
+    .pw-step:hover {
+      border-color: rgba(99,102,241,0.35); transform: translateY(-6px);
+      box-shadow: var(--shadow-lg); background: var(--surface-hover);
+    }
+    .pw-step-num {
+      width: 56px; height: 56px; border-radius: 16px; background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-family: var(--font-head);
+      font-weight: 800; font-size: 1.35rem; margin: 0 auto 24px;
+      box-shadow: 0 8px 24px var(--primary-glow);
+    }
+    .pw-step h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .pw-step p { font-size: 0.95rem; color: var(--text2); line-height: 1.6; }
+
+    /* ── Templates ── */
+    .pw-templates { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .pw-tpl {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 28px; transition: all 0.35s var(--ease); cursor: default;
+    }
+    .pw-tpl:hover {
+      transform: translateY(-6px); border-color: rgba(99,102,241,0.35);
+      box-shadow: var(--shadow-lg); background: var(--surface-hover);
+    }
+    .pw-tpl-icon { font-size: 2.25rem; margin-bottom: 14px; }
+    .pw-tpl h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .pw-tpl p { font-size: 0.9rem; color: var(--text3); line-height: 1.55; }
+
+    /* ── Install / Demo ── */
+    .pw-install-box {
+      background: var(--bg-elevated); border: 1px solid var(--border-strong); border-radius: var(--radius-xl);
+      max-width: 640px; margin: 0 auto; overflow: hidden; box-shadow: var(--shadow-lg);
+    }
+    .pw-install-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .pw-install-dots { display: flex; gap: 8px; }
+    .pw-install-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .pw-install-dots span:nth-child(1) { background: #ef4444; }
+    .pw-install-dots span:nth-child(2) { background: #eab308; }
+    .pw-install-dots span:nth-child(3) { background: #22c55e; }
+    .pw-install-code { padding: 24px 28px; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.9; color: var(--text2); overflow-x: auto; margin: 0; }
+    .pw-install-code .tag { color: #c678dd; }
+    .pw-install-code .attr { color: #61afef; }
+    .pw-install-code .str { color: #98c379; }
+    .pw-install-cta { margin-top: 28px; display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .pw-btn-primary {
+      display: inline-block; padding: 16px 32px; min-height: 44px; box-sizing: border-box;
+      background: var(--primary); color: #fff; border-radius: var(--radius);
+      font-family: var(--font-head); font-weight: 600; font-size: 1rem; text-decoration: none;
+      transition: transform 0.25s var(--spring), box-shadow 0.25s, filter 0.2s;
+      box-shadow: 0 8px 28px var(--primary-glow);
+    }
+    .pw-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 36px var(--primary-glow); color: #fff; text-decoration: none; filter: brightness(1.06); }
+    .pw-btn-ghost {
+      display: inline-block; padding: 16px 32px; min-height: 44px; min-width: 44px; box-sizing: border-box;
+      color: var(--text2); border: 1px solid var(--border-strong); border-radius: var(--radius);
+      font-weight: 600; font-size: 1rem; text-decoration: none; margin-left: 0;
+      transition: all 0.25s var(--ease);
+    }
+    .pw-btn-ghost:hover { border-color: var(--text3); color: var(--text); background: var(--surface); text-decoration: none; }
+    .pw-btn-primary:focus-visible, .pw-btn-ghost:focus-visible, .pw-hero-cta:focus-visible, .pw-nav-cta:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+
+    /* ── Technical ── */
+    .pw-badges { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 28px; }
+    .pw-badge {
+      padding: 12px 22px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.9rem; font-weight: 500; color: var(--text2);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .pw-badge:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+    .pw-badge strong { color: var(--success); }
+
+    /* ── Social proof ── */
+    .pw-proof {
+      text-align: center; padding: 40px 48px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-xl);
+      max-width: 420px; margin: 0 auto; transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pw-proof:hover { border-color: rgba(99,102,241,0.25); box-shadow: 0 8px 32px rgba(99,102,241,0.1); }
+    .pw-proof-num {
+      font-family: var(--font-head); font-size: 3rem; font-weight: 800;
+      background: var(--primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pw-proof-label { font-size: 0.95rem; color: var(--text2); margin-top: 6px; }
+
+    /* ── CTA ── */
+    .pw-cta-section { text-align: center; padding: 120px 28px; }
+    .pw-cta-section h2 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 700;
+      letter-spacing: -0.03em; color: var(--text); margin-bottom: 16px;
+    }
+    .pw-cta-section p { color: var(--text2); margin-bottom: 32px; font-size: 1.15rem; line-height: 1.6; }
+    .pw-cta-buttons { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Founders ── */
+    .pw-founders { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 840px; margin: 0 auto; }
+    .pw-founder {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl);
+      padding: 40px 36px; text-align: center; transition: all 0.35s var(--ease);
+    }
+    .pw-founder:hover {
+      border-color: rgba(99,102,241,0.35); transform: translateY(-6px);
+      box-shadow: var(--shadow-lg); background: var(--surface-hover);
+    }
+    .pw-founder-avatar {
+      width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(168,85,247,0.25));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 1.9rem; font-weight: 700; color: #fff;
+      border: 2px solid var(--border-strong); box-shadow: 0 8px 24px rgba(99,102,241,0.2);
+    }
+    .pw-founder h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .pw-founder-role { font-size: 0.9rem; color: var(--secondary); font-weight: 600; margin-bottom: 14px; }
+    .pw-founder-bio { font-size: 0.95rem; color: var(--text2); line-height: 1.65; max-width: 300px; margin: 0 auto; }
+    .pw-founder-links { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+    .pw-founder-links a {
+      width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border); color: var(--text2);
+      display: flex; align-items: center; justify-content: center; text-decoration: none;
+      transition: all 0.25s var(--ease);
+    }
+    .pw-founder-links a:hover {
+      background: rgba(99,102,241,0.15); color: var(--secondary);
+      border-color: rgba(99,102,241,0.3); transform: translateY(-2px);
+    }
+
+    /* ── Footer ── */
+    .pw-footer {
+      border-top: 1px solid var(--border); padding: 48px 28px; text-align: center;
+      color: var(--text3); font-size: 0.95rem; line-height: 1.6;
+    }
+    .pw-footer strong { color: var(--text2); }
+
+    /* ── Reveal on scroll + stagger children ── */
+    .pw-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
+    .pw-reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: no-preference) {
+      .pw-reveal.visible .pw-section-title h2 { animation: pw-fade-up 0.6s var(--ease) both; }
+      .pw-reveal.visible .pw-section-title p { animation: pw-fade-up 0.6s var(--ease) 0.06s both; }
+      .pw-reveal.visible .pw-problem-card { animation: pw-fade-up 0.55s var(--ease) both; }
+      .pw-reveal.visible .pw-problem-left .pw-problem-card:nth-child(1) { animation-delay: 0.08s; }
+      .pw-reveal.visible .pw-problem-left .pw-problem-card:nth-child(2) { animation-delay: 0.16s; }
+      .pw-reveal.visible .pw-problem-right .pw-problem-card:nth-child(1) { animation-delay: 0.12s; }
+      .pw-reveal.visible .pw-problem-right .pw-problem-card:nth-child(2) { animation-delay: 0.2s; }
+      .pw-reveal.visible .pw-step { animation: pw-fade-up 0.6s var(--ease) both; }
+      .pw-reveal.visible .pw-step:nth-child(1) { animation-delay: 0.08s; }
+      .pw-reveal.visible .pw-step:nth-child(2) { animation-delay: 0.16s; }
+      .pw-reveal.visible .pw-step:nth-child(3) { animation-delay: 0.24s; }
+      .pw-reveal.visible .pw-tpl { animation: pw-scale-in 0.5s var(--spring) both; }
+      .pw-reveal.visible .pw-tpl:nth-child(1) { animation-delay: 0.06s; }
+      .pw-reveal.visible .pw-tpl:nth-child(2) { animation-delay: 0.12s; }
+      .pw-reveal.visible .pw-tpl:nth-child(3) { animation-delay: 0.18s; }
+      .pw-reveal.visible .pw-tpl:nth-child(4) { animation-delay: 0.24s; }
+      .pw-reveal.visible .pw-founder { animation: pw-fade-up 0.6s var(--ease) both; }
+      .pw-reveal.visible .pw-founder:nth-child(1) { animation-delay: 0.1s; }
+      .pw-reveal.visible .pw-founder:nth-child(2) { animation-delay: 0.2s; }
+      .pw-reveal.visible .pw-code-block { animation: pw-fade-up 0.6s var(--ease) 0.1s both; }
+      .pw-reveal.visible .pw-solution-list li { animation: pw-fade-up 0.5s var(--ease) both; }
+      .pw-reveal.visible .pw-solution-list li:nth-child(1) { animation-delay: 0.15s; }
+      .pw-reveal.visible .pw-solution-list li:nth-child(2) { animation-delay: 0.2s; }
+      .pw-reveal.visible .pw-solution-list li:nth-child(3) { animation-delay: 0.25s; }
+      .pw-reveal.visible .pw-solution-list li:nth-child(4) { animation-delay: 0.3s; }
+      .pw-reveal.visible .pw-install-box { animation: pw-scale-in 0.6s var(--spring) 0.1s both; }
+      .pw-reveal.visible .pw-proof { animation: pw-scale-in 0.6s var(--spring) 0.1s both; }
+      .pw-reveal.visible .pw-badge { animation: pw-fade-up 0.5s var(--ease) both; }
+      .pw-reveal.visible .pw-badge:nth-child(1) { animation-delay: 0.05s; }
+      .pw-reveal.visible .pw-badge:nth-child(2) { animation-delay: 0.1s; }
+      .pw-reveal.visible .pw-badge:nth-child(3) { animation-delay: 0.15s; }
+      .pw-reveal.visible .pw-badge:nth-child(4) { animation-delay: 0.2s; }
+      .pw-reveal.visible.pw-cta-section h2 { animation: pw-fade-up 0.6s var(--ease) 0.05s both; }
+      .pw-reveal.visible.pw-cta-section p { animation: pw-fade-up 0.6s var(--ease) 0.1s both; }
+      .pw-reveal.visible .pw-cta-buttons a { animation: pw-scale-in 0.5s var(--spring) both; }
+      .pw-reveal.visible .pw-cta-buttons a:nth-child(1) { animation-delay: 0.18s; }
+      .pw-reveal.visible .pw-cta-buttons a:nth-child(2) { animation-delay: 0.24s; }
+    }
+
+    /* ── Button hover wow ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .pw-btn-primary:hover, .pw-hero-cta:hover { transform: translateY(-4px) scale(1.02); }
+      .pw-nav-cta:hover { transform: translateY(-2px) scale(1.03); }
+      .pw-step:hover, .pw-tpl:hover, .pw-founder:hover { transform: translateY(-8px) scale(1.02); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .pw-hero { gap: 48px; padding: 120px 24px 80px; }
+      .pw-section { padding: 80px 24px; }
+      .pw-nav-links { gap: 28px; }
+    }
+    @media (max-width: 900px) {
+      .pw-hero { grid-template-columns: 1fr; text-align: center; padding: 100px 20px 72px; gap: 40px; }
+      .pw-hero-sub { margin-left: auto; margin-right: auto; }
+      .pw-hero-visual { order: -1; max-width: 420px; margin: 0 auto; }
+      .pw-hero-browser-body { height: 260px; }
+      .pw-problem { grid-template-columns: 1fr; gap: 24px; }
+      .pw-solution-grid { grid-template-columns: 1fr; gap: 32px; }
+      .pw-steps { grid-template-columns: 1fr; gap: 20px; }
+      .pw-templates { grid-template-columns: 1fr; gap: 16px; }
+      .pw-founders { grid-template-columns: 1fr; gap: 20px; max-width: 400px; margin-left: auto; margin-right: auto; }
+      .pw-section { padding: 72px 20px; }
+      .pw-section-title { margin-bottom: 40px; }
+      .pw-cta-section { padding: 80px 20px; }
+      .pw-cta-buttons { gap: 14px; }
+      .pw-install-cta { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 600px) {
+      .pw-nav-inner { padding: 0 16px; height: 64px; }
+      .pw-nav-links { display: none; }
+      .pw-hero { padding: 88px 16px 56px; gap: 32px; }
+      .pw-hero h1 { font-size: 1.85rem; }
+      .pw-hero h2 { font-size: 1.1rem; }
+      .pw-hero-sub { font-size: 0.98rem; }
+      .pw-hero-cta { padding: 14px 24px; font-size: 0.95rem; }
+      .pw-hero-personas { gap: 12px; padding: 20px; }
+      .pw-hero-persona { width: 64px; height: 64px; font-size: 0.65rem; min-width: 64px; min-height: 64px; }
+      .pw-hero-persona span { font-size: 1.4rem; }
+      .pw-hero-browser-body { height: 240px; }
+      .pw-section { padding: 56px 16px; }
+      .pw-section-title h2 { font-size: 1.6rem; }
+      .pw-section-title p { font-size: 0.95rem; }
+      .pw-problem-card, .pw-step { padding: 24px 20px; }
+      .pw-install-box { border-radius: var(--radius-lg); }
+      .pw-install-head { padding: 12px 16px; }
+      .pw-install-code { padding: 16px 18px; font-size: 0.8rem; }
+      .pw-btn-primary, .pw-btn-ghost { padding: 14px 24px; width: 100%; max-width: 280px; justify-content: center; }
+      .pw-cta-section { padding: 64px 16px; }
+      .pw-cta-section h2 { font-size: 1.6rem; }
+      .pw-founder { padding: 28px 24px; }
+      .pw-footer { padding: 32px 16px; font-size: 0.88rem; }
+    }
+    @media (max-width: 380px) {
+      .pw-hero h1 { font-size: 1.6rem; }
+      .pw-hero-persona { width: 56px; height: 56px; min-width: 56px; min-height: 56px; font-size: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Pre-loader -->
+  <div id="pw-loader" aria-hidden="true">
+    <div class="pw-loader-logo">Persona<span>Web</span>.ai</div>
+    <div class="pw-loader-bar"><div class="pw-loader-fill" id="pw-loader-fill"></div></div>
+    <p class="pw-loader-text">Preparing personalized experience...</p>
+  </div>
+
+  <nav class="pw-nav" aria-label="Main navigation">
+    <div class="pw-nav-inner">
+      <a href="#main" class="pw-logo">Persona<span>Web</span>.ai</a>
+      <ul class="pw-nav-links">
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#solution">The Solution</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#demo">Live Demo</a></li>
+        <li><a href="#founders">Founders</a></li>
+      </ul>
+      <a href="demo/store.html" class="pw-nav-cta">Try Live Demo</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="pw-hero" aria-labelledby="hero-heading">
+      <div class="pw-hero-content">
+        <div class="pw-hero-badge"><span class="pw-hero-badge-dot" aria-hidden="true"></span> MIT HackNation 2026</div>
+        <h1 id="hero-heading">Every visitor sees a different website</h1>
+        <h2>AI that personalizes your site in real-time</h2>
+        <p class="pw-hero-sub">One script tag. Zero dependencies. Instant magic.</p>
+        <a href="demo/store.html" class="pw-hero-cta">Try Live Demo →</a>
+      </div>
+      <div class="pw-hero-visual">
+        <div class="pw-hero-browser">
+          <div class="pw-hero-browser-bar"><span></span><span></span><span></span></div>
+          <div class="pw-hero-browser-body">
+            <div class="pw-hero-personas">
+              <a href="demo/store.html?utm_source=reddit&utm_campaign=gaming" class="pw-hero-persona" aria-label="Gamer persona"><span>🎮</span>Gamer</a>
+              <a href="demo/store.html?utm_source=google&utm_term=compare+monitor" class="pw-hero-persona" aria-label="Researcher persona"><span>📊</span>Research</a>
+              <a href="demo/store.html?utm_source=email&utm_campaign=deal" class="pw-hero-persona" aria-label="Deal hunter persona"><span>💰</span>Deal</a>
+            </div>
+            <span class="pw-hero-label">Click a persona → see different hero</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="pw-section pw-reveal" id="problem" aria-labelledby="problem-heading">
+      <div class="pw-section-title">
+        <h2 id="problem-heading">The problem with one-size-fits-all</h2>
+        <p>72% of visitors bounce because your website doesn't speak their language.</p>
+      </div>
+      <div class="pw-problem">
+        <div class="pw-problem-left">
+          <div class="pw-problem-card"><h3>Same hero for everyone</h3><p>Your Google visitor sees the same site as your email subscriber. No intent, no relevance.</p></div>
+          <div class="pw-problem-card"><h3>Personalization = complexity</h3><p>Usually requires 10 tools, a dev team, and months of setup. Not anymore.</p></div>
+        </div>
+        <div class="pw-problem-right">
+          <div class="pw-problem-card"><h3>Gamer wants performance</h3><p>240Hz, 1ms, RGB. They bounce if they see "Best for office".</p></div>
+          <div class="pw-problem-card"><h3>Researcher wants comparison</h3><p>Specs, benchmarks, "vs" content. One CTA doesn't fit all.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="pw-section pw-reveal" id="solution" aria-labelledby="solution-heading">
+      <div class="pw-section-title">
+        <h2 id="solution-heading">The solution: one script tag</h2>
+        <p>Add one line. AI analyzes 12+ signals in real-time. Instantly serves the perfect hero.</p>
+      </div>
+      <div class="pw-solution-grid">
+        <div class="pw-code-block">
+<span class="com">&lt;!-- Add before &lt;/body&gt; --&gt;</span>
+<span class="kw">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://personaweb.ai/personaweb.js"</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="com">&lt;!-- That's it. --&gt;</span>
+        </div>
+        <div>
+          <ul class="pw-solution-list">
+            <li>AI analyzes UTM params, referrer, page context</li>
+            <li>4 intent variants: Buyer, Researcher, Gamer, Deal Hunter</li>
+            <li>Explainable decisions — no black box</li>
+            <li>Zero dependencies. &lt;1s to personalize.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="pw-section pw-reveal" id="how" aria-labelledby="how-heading">
+      <div class="pw-section-title">
+        <h2 id="how-heading">How it works</h2>
+        <p>Signal detection → AI decision → instant injection.</p>
+      </div>
+      <div class="pw-steps">
+        <div class="pw-step">
+          <div class="pw-step-num">1</div>
+          <h3>Signal detection</h3>
+          <p>UTM, referrer, and page context are captured in real-time. No cookies required.</p>
+        </div>
+        <div class="pw-step">
+          <div class="pw-step-num">2</div>
+          <h3>AI decision</h3>
+          <p>Weighted scoring picks the best intent. Every decision includes a human-readable reason.</p>
+        </div>
+        <div class="pw-step">
+          <div class="pw-step-num">3</div>
+          <h3>Instant injection</h3>
+          <p>Hero section transforms with shimmer → cross-fade. Typically under 1 second.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Templates -->
+    <section class="pw-section pw-reveal" id="templates" aria-labelledby="templates-heading">
+      <div class="pw-section-title">
+        <h2 id="templates-heading">Four variants. One engine.</h2>
+        <p>Each template has its own theme, headline, image, and CTA.</p>
+      </div>
+      <div class="pw-templates">
+        <div class="pw-tpl"><div class="pw-tpl-icon">🏆</div><h3>Direct Buyer</h3><p>Confident, conversion-focused. "Add to Cart" hero.</p></div>
+        <div class="pw-tpl"><div class="pw-tpl-icon">📊</div><h3>Researcher</h3><p>Clean, specs-driven. "Compare All Models".</p></div>
+        <div class="pw-tpl"><div class="pw-tpl-icon">🎮</div><h3>Gamer</h3><p>Dark, neon. "240Hz. 1ms. Game Over."</p></div>
+        <div class="pw-tpl"><div class="pw-tpl-icon">💰</div><h3>Deal Hunter</h3><p>Urgent, countdown. "Grab This Deal".</p></div>
+      </div>
+    </section>
+
+    <!-- Install / Demo -->
+    <section class="pw-section pw-reveal" id="demo" aria-labelledby="demo-heading">
+      <div class="pw-section-title">
+        <h2 id="demo-heading">Install in 30 seconds</h2>
+        <p>Paste this into your HTML. PersonaWeb handles the rest.</p>
+      </div>
+      <div class="pw-install-box">
+        <div class="pw-install-head">
+          <div class="pw-install-dots"><span></span><span></span><span></span></div>
+          <button type="button" class="pw-btn-ghost" style="margin:0;padding:6px 14px;font-size:0.8rem;" aria-label="Copy script snippet to clipboard" onclick="navigator.clipboard.writeText('<script src=\'https://personaweb.ai/personaweb.js\'><\/script>');this.textContent='Copied!';setTimeout(function(){this.textContent='Copy';}.bind(this),1500)">Copy</button>
+        </div>
+        <pre class="pw-install-code"><span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://personaweb.ai/personaweb.js"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+      </div>
+      <div class="pw-install-cta">
+        <a href="demo/store.html" class="pw-btn-primary">Try Live Demo</a>
+        <a href="https://github.com/personaweb-ai/personaweb" class="pw-btn-ghost" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </section>
+
+    <!-- Technical -->
+    <section class="pw-section pw-reveal" id="tech" aria-labelledby="tech-heading">
+      <div class="pw-section-title">
+        <h2 id="tech-heading">Built for production</h2>
+        <p>Zero dependencies. Explainable AI. Safe by default.</p>
+      </div>
+      <div class="pw-badges">
+        <span class="pw-badge"><strong>0</strong> dependencies</span>
+        <span class="pw-badge">&lt;1s injection</span>
+        <span class="pw-badge">WCAG 2.1 AA</span>
+        <span class="pw-badge">.pw- namespace</span>
+      </div>
+    </section>
+
+    <!-- Social proof -->
+    <section class="pw-section pw-reveal" id="proof" aria-label="Social proof">
+      <div class="pw-proof">
+        <div class="pw-proof-num" id="pw-proof-num">0</div>
+        <div class="pw-proof-label">Script tag to personalize</div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="pw-cta-section pw-reveal" id="cta" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Ready to personalize your website?</h2>
+      <p>One script tag. Every visitor gets the experience they deserve.</p>
+      <div class="pw-cta-buttons">
+        <a href="demo/store.html" class="pw-btn-primary">Try Free Demo</a>
+        <a href="https://github.com/personaweb-ai/personaweb" class="pw-btn-ghost" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </section>
+
+    <!-- Founders (retained) -->
+    <section class="pw-section pw-reveal" id="founders" aria-labelledby="founders-heading">
+      <div class="pw-section-title">
+        <h2 id="founders-heading">Meet the Founders</h2>
+        <p>Building the future of intent-driven web experiences.</p>
+      </div>
+      <div class="pw-founders">
+        <div class="pw-founder">
+          <div class="pw-founder-avatar" aria-hidden="true">UA</div>
+          <h3>Ujjawal Anand</h3>
+          <div class="pw-founder-role">Co-Founder</div>
+          <p class="pw-founder-bio">Driving product and vision. Previously building developer tools and AI-powered experiences.</p>
+          <div class="pw-founder-links">
+            <a href="https://linkedin.com/in/ujjawalanand" target="_blank" rel="noopener" aria-label="Ujjawal LinkedIn">in</a>
+            <a href="https://github.com/ujjawalanand" target="_blank" rel="noopener" aria-label="Ujjawal GitHub">⌘</a>
+            <a href="https://ujjawalanand.com/resume" target="_blank" rel="noopener" aria-label="Ujjawal Resume">CV</a>
+          </div>
+        </div>
+        <div class="pw-founder">
+          <div class="pw-founder-avatar" aria-hidden="true">KS</div>
+          <h3>Kshitij Singh</h3>
+          <div class="pw-founder-role">Co-Founder</div>
+          <p class="pw-founder-bio">Engineering and design. Focused on making personalization plug-and-play for every website.</p>
+          <div class="pw-founder-links">
+            <a href="https://linkedin.com/in/kshitijsingh" target="_blank" rel="noopener" aria-label="Kshitij LinkedIn">in</a>
+            <a href="https://github.com/kshitijsingh" target="_blank" rel="noopener" aria-label="Kshitij GitHub">⌘</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pw-footer">
+    <p><strong>PersonaWeb.ai</strong> — Built for MIT HackNation 2026</p>
+    <p style="margin-top:6px;">Team PersonaWeb · Ujjawal Anand · Kshitij Singh · VC Track</p>
+  </footer>
+
+  <script>
+    (function() {
+      var loader = document.getElementById('pw-loader');
+      var fill = document.getElementById('pw-loader-fill');
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var duration = reduceMotion ? 400 : 2500;
+      var start = Date.now();
+      function tick() {
+        var elapsed = Date.now() - start;
+        var pct = Math.min(100, (elapsed / duration) * 100);
+        if (fill) fill.style.width = pct + '%';
+        if (elapsed >= duration) {
+          if (loader) loader.classList.add('hidden');
+          document.body.style.overflow = '';
+          return;
+        }
+        requestAnimationFrame(tick);
+      }
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(tick);
+      setTimeout(function() {
+        if (loader && !loader.classList.contains('hidden')) loader.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, duration + 400);
+
+      var nav = document.querySelector('.pw-nav');
+      if (nav) window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
+
+      var reveals = document.querySelectorAll('.pw-reveal');
+      if (typeof IntersectionObserver !== 'undefined') {
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        reveals.forEach(function(el) { io.observe(el); });
+      } else { reveals.forEach(function(el) { el.classList.add('visible'); }); }
+
+      var proofNum = document.getElementById('pw-proof-num');
+      if (proofNum && typeof IntersectionObserver !== 'undefined') {
+        var io2 = new IntersectionObserver(function(entries) {
+          if (!entries[0].isIntersecting) return;
+          var el = entries[0].target;
+          if (el._done) return;
+          el._done = true;
+          var target = 1;
+          var startTime = null;
+          function animate(t) {
+            if (!startTime) startTime = t;
+            var progress = Math.min((t - startTime) / 600, 1);
+            var ease = 1 - Math.pow(1 - progress, 2);
+            var n = Math.round(ease * target);
+            el.textContent = n;
+            if (progress < 1) requestAnimationFrame(animate);
+          }
+          requestAnimationFrame(animate);
+        }, { threshold: 0.5 });
+        io2.observe(proofNum);
+      }
+
+      console.log('%c PersonaWeb.ai ', 'background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 4px;', 'One script tag. Every visitor sees a different website.');
+    })();
+  </script>
+</body>
+</html>

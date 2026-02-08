@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechVault — Premium Monitors & Displays</title>
+  <meta name="description" content="Shop the best 4K gaming monitors, ultrawide displays, and professional screens. Free shipping on orders over $99.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
+  <link rel="stylesheet" href="../personaweb.css">
+  <style>
+    /* ─── TechVault Store Styles (Shopify Dawn-inspired) ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #1a1a2e; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Announcement Bar ── */
+    .announce {
+      background: #1a1a2e; color: #e2e8f0; text-align: center;
+      padding: 8px 1rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px;
+    }
+    .announce strong { color: #818cf8; }
+
+    /* ── Navigation ── */
+    .nav { background: #fff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 9999; }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+    .nav-logo span { color: #6366f1; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: #475569; transition: color 0.2s; }
+    .nav-links a:hover { color: #1a1a2e; }
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-search {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+      padding: 8px 14px; font-size: 0.85rem; width: 200px; outline: none; transition: border-color 0.2s;
+    }
+    .nav-search:focus { border-color: #6366f1; }
+    .nav-search::placeholder { color: #94a3b8; }
+    .nav-cart { position: relative; font-size: 1.2rem; cursor: pointer; }
+    .nav-cart-count {
+      position: absolute; top: -6px; right: -8px; background: #6366f1; color: #fff;
+      font-size: 9px; width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-weight: 700;
+    }
+
+    /* ── Breadcrumbs ── */
+    .breadcrumbs {
+      max-width: 1280px; margin: 0 auto; padding: 12px 2rem;
+      font-size: 0.78rem; color: #94a3b8;
+    }
+    .breadcrumbs a { color: #6366f1; }
+    .breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumbs span { margin: 0 6px; color: #cbd5e1; }
+
+    /* ── Hero Mount (PersonaWeb injects here) ── */
+    .hero-section { min-height: 500px; background: #f8fafc; position: relative; overflow: hidden; }
+
+    /* ── Section Titles ── */
+    .section-title {
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    .section-title h2 { font-size: 1.75rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+    .section-title p { color: #64748b; font-size: 0.95rem; }
+
+    /* ── Product Grid ── */
+    .products { max-width: 1280px; margin: 3rem auto; padding: 0 2rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .product-card {
+      background: #fff; border: 1px solid #f1f5f9; border-radius: 12px;
+      overflow: hidden; transition: all 0.3s ease;
+    }
+    .product-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.08); transform: translateY(-4px); border-color: #e2e8f0; }
+    .product-img {
+      aspect-ratio: 1; overflow: hidden; background: #f8fafc;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .product-card:hover .product-img img { transform: scale(1.06); }
+    .product-info { padding: 16px 18px; }
+    .product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; color: #0f172a; }
+    .product-desc { font-size: 0.78rem; color: #64748b; margin-bottom: 8px; line-height: 1.4; }
+    .product-price { font-size: 1.1rem; font-weight: 700; color: #0f172a; }
+    .product-price-old { color: #94a3b8; text-decoration: line-through; font-size: 0.85rem; margin-left: 6px; font-weight: 400; }
+    .product-rating { display: flex; align-items: center; gap: 4px; margin-top: 6px; font-size: 0.78rem; color: #f59e0b; }
+    .product-rating span { color: #94a3b8; }
+    .product-btn {
+      display: block; width: 100%; margin-top: 12px; padding: 10px;
+      background: #0f172a; color: #fff; border: none; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+    }
+    .product-btn:hover { background: #1e293b; }
+
+    /* ── Trust Bar ── */
+    .trust-bar {
+      max-width: 1280px; margin: 3rem auto; padding: 2rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .trust-item { text-align: center; padding: 1.5rem 1rem; }
+    .trust-icon { font-size: 2rem; margin-bottom: 8px; }
+    .trust-label { font-weight: 600; font-size: 0.9rem; color: #0f172a; margin-bottom: 2px; }
+    .trust-desc { font-size: 0.78rem; color: #64748b; }
+
+    /* ── Reviews ── */
+    .reviews { max-width: 1280px; margin: 2rem auto 3rem; padding: 0 2rem; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .review-card {
+      background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 12px;
+      padding: 20px 22px;
+    }
+    .review-stars { color: #f59e0b; margin-bottom: 8px; font-size: 0.9rem; }
+    .review-text { font-size: 0.88rem; color: #475569; line-height: 1.6; margin-bottom: 10px; }
+    .review-author { font-size: 0.78rem; color: #94a3b8; font-weight: 500; }
+
+    /* ── Newsletter ── */
+    .newsletter {
+      background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;
+      padding: 3rem 2rem; text-align: center;
+    }
+    .newsletter h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .newsletter p { color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem; }
+    .newsletter-form { display: flex; justify-content: center; gap: 8px; max-width: 420px; margin: 0 auto; }
+    .newsletter-input {
+      flex: 1; padding: 10px 16px; border: 1px solid #e2e8f0; border-radius: 8px;
+      font-size: 0.9rem; outline: none;
+    }
+    .newsletter-input:focus { border-color: #6366f1; }
+    .newsletter-btn {
+      padding: 10px 24px; background: #6366f1; color: #fff; border: none; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+    }
+    .newsletter-btn:hover { background: #4f46e5; }
+
+    /* ── Footer ── */
+    .footer { background: #0f172a; color: #94a3b8; padding: 3rem 2rem 2rem; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer-brand .nav-logo { color: #fff; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 0.82rem; line-height: 1.6; max-width: 280px; }
+    .footer h4 { color: #e2e8f0; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+    .footer ul { list-style: none; }
+    .footer li { margin-bottom: 6px; }
+    .footer a { font-size: 0.82rem; color: #94a3b8; transition: color 0.2s; }
+    .footer a:hover { color: #e2e8f0; }
+    .footer-bottom {
+      max-width: 1280px; margin: 2rem auto 0; padding-top: 1.5rem;
+      border-top: 1px solid #1e293b; text-align: center; font-size: 0.75rem; color: #64748b;
+    }
+    .payment-icons { display: flex; justify-content: center; gap: 12px; margin-top: 8px; font-size: 1.3rem; }
+
+    /* ── Powered by PersonaWeb badge ── */
+    .pw-powered {
+      position: fixed; bottom: 16px; left: 16px;
+      background: rgba(15,23,42,0.9); backdrop-filter: blur(8px); color: #e2e8f0;
+      padding: 8px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;
+      z-index: 99998; display: flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .pw-powered a { color: #818cf8; font-weight: 700; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-search { width: 130px; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .trust-bar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Announcement Bar ═══ -->
+  <div class="announce">
+    <strong>Free Shipping</strong> on orders over $99 · 30-Day Returns · <strong>Shop New Arrivals →</strong>
+  </div>
+
+  <!-- ═══ Navigation ═══ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">Tech<span>Vault</span></div>
+      <ul class="nav-links">
+        <li><a href="#">Monitors</a></li>
+        <li><a href="#">Laptops</a></li>
+        <li><a href="#">Peripherals</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#" style="color:#6366f1;font-weight:600">Deals</a></li>
+      </ul>
+      <div class="nav-right">
+        <input class="nav-search" type="text" placeholder="Search products…">
+        <div class="nav-cart">🛒<span class="nav-cart-count">2</span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ Breadcrumbs ═══ -->
+  <div class="breadcrumbs">
+    <a href="#">Home</a><span>›</span>
+    <a href="#">Monitors</a><span>›</span>
+    <a href="#">Gaming</a><span>›</span>
+    VoltEdge XG32 Ultra
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO SECTION — PersonaWeb.ai controls this
+       One <script> tag does everything.
+       ═══════════════════════════════════════════════════ -->
+  <div class="hero-section" id="hero"></div>
+
+  <!-- ═══ Product Grid ═══ -->
+  <section class="products">
+    <div class="section-title">
+      <h2>More Monitors to Explore</h2>
+      <p>Find the perfect display for gaming, work, or creative projects</p>
+    </div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80" alt="VoltEdge XG32 Ultra" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">VoltEdge XG32 Ultra</div>
+          <div class="product-desc">32″ 4K UHD · 240Hz · 1ms · HDR 1400</div>
+          <div class="product-price">$1,599.99</div>
+          <div class="product-rating">★★★★★ <span>(247 reviews)</span></div>
+          <button class="product-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&q=80" alt="VoltEdge XG27 Pro" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">VoltEdge XG27 Pro</div>
+          <div class="product-desc">27″ 4K UHD · 165Hz · 1ms · HDR 600</div>
+          <div class="product-price">$899.99 <span class="product-price-old">$1,099.99</span></div>
+          <div class="product-rating">★★★★★ <span>(183 reviews)</span></div>
+          <button class="product-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?w=400&q=80" alt="VoltEdge UW34" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">VoltEdge UW34 Ultrawide</div>
+          <div class="product-desc">34″ UWQHD · 180Hz · Curved · USB-C</div>
+          <div class="product-price">$1,299.99</div>
+          <div class="product-rating">★★★★☆ <span>(92 reviews)</span></div>
+          <button class="product-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=80" alt="VoltEdge XG24" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">VoltEdge XG24 Esports</div>
+          <div class="product-desc">24″ FHD · 360Hz · 0.5ms · G-SYNC</div>
+          <div class="product-price">$449.99 <span class="product-price-old">$549.99</span></div>
+          <div class="product-rating">★★★★★ <span>(314 reviews)</span></div>
+          <button class="product-btn">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ Trust Badges ═══ -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-icon">🚚</div>
+      <div class="trust-label">Free Shipping</div>
+      <div class="trust-desc">On orders over $99</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">↩️</div>
+      <div class="trust-label">30-Day Returns</div>
+      <div class="trust-desc">No questions asked</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div class="trust-label">2-Year Warranty</div>
+      <div class="trust-desc">Full coverage included</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">💬</div>
+      <div class="trust-label">24/7 Support</div>
+      <div class="trust-desc">Chat, email, or phone</div>
+    </div>
+  </div>
+
+  <!-- ═══ Reviews ═══ -->
+  <section class="reviews">
+    <div class="section-title">
+      <h2>What Our Customers Say</h2>
+      <p>Join 50,000+ happy customers worldwide</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"The XG32 Ultra completely changed my gaming experience. The 240Hz at 4K is unreal. Colors are incredible for design work too."</div>
+        <div class="review-author">— Alex M., Verified Buyer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Best monitor I've ever owned. The HDR 1400 makes movies look stunning. Worth every penny at this price point."</div>
+        <div class="review-author">— Sarah K., Verified Buyer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <div class="review-text">"Incredible value compared to competing brands. The USB-C hub is a game changer for my MacBook setup. Highly recommend."</div>
+        <div class="review-author">— James R., Verified Buyer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Newsletter ═══ -->
+  <div class="newsletter">
+    <h3>Get 10% Off Your First Order</h3>
+    <p>Subscribe for exclusive deals and new product announcements.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="Enter your email">
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+  </div>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size:1.3rem">Tech<span style="color:#818cf8">Vault</span></div>
+        <p>Your trusted source for premium displays and monitors since 2019. Based in San Francisco, CA.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Gaming Monitors</a></li>
+          <li><a href="#">Professional Displays</a></li>
+          <li><a href="#">Ultrawide Monitors</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Deals & Clearance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Warranty Info</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About TechVault</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TechVault Inc. All rights reserved.</p>
+      <div class="payment-icons">
+        <span title="Visa">💳</span>
+        <span title="Mastercard">💳</span>
+        <span title="Apple Pay">🍎</span>
+        <span title="Google Pay">G</span>
+        <span title="PayPal">🅿️</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ Powered by PersonaWeb badge ═══ -->
+  <div class="pw-powered">
+    🧠 Powered by <a href="../index.html">PersonaWeb.ai</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       THIS IS THE ENTIRE INSTALL.
+       One script tag. PersonaWeb detects the hero, analyzes
+       visitor intent from URL/referrer/page context, and
+       renders the right hero variant automatically.
+       ═══════════════════════════════════════════════════════════ -->
+  <script src="../personaweb.js"></script>
+
+</body>
+</html>

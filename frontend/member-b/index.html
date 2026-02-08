@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechVault — VoltEdge XG32 Ultra Gaming Monitor</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+  <link rel="stylesheet" href="smarthero-demo.css">
+  <style>
+    /* ─── Store Chrome (not part of SmartHero) ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* ── Navigation ── */
+    .store-nav {
+      background: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+    }
+    .store-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .store-logo span { color: #818cf8; }
+    .store-nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .store-nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .store-nav-links a:hover { color: #e2e8f0; }
+    .store-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .store-search {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 7px 14px;
+      color: #e2e8f0;
+      font-size: 0.85rem;
+      width: 220px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .store-search:focus { border-color: #818cf8; }
+    .store-search::placeholder { color: #64748b; }
+    .store-cart {
+      position: relative;
+      color: #e2e8f0;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .store-cart-badge {
+      position: absolute;
+      top: -7px;
+      right: -9px;
+      background: #818cf8;
+      color: white;
+      font-size: 10px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    /* ── Breadcrumbs ── */
+    .store-breadcrumbs {
+      padding: 12px 2rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .store-breadcrumbs a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+    .store-breadcrumbs a:hover { text-decoration: underline; }
+    .store-breadcrumbs span { margin: 0 6px; color: #cbd5e1; }
+
+    /* ── Hero Placeholder ── */
+    .hero-section {
+      min-height: 480px;
+      background: #f1f5f9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Product Details ── */
+    .store-details {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
+    }
+    .store-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+    }
+    .store-tab {
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .store-tab.active {
+      color: #818cf8;
+      border-color: #818cf8;
+    }
+    .store-tab:hover { color: #1e293b; }
+    .store-desc {
+      line-height: 1.75;
+      color: #475569;
+      max-width: 700px;
+    }
+    .store-desc h3 {
+      color: #0f172a;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .store-desc p { margin-bottom: 1rem; }
+    .store-desc strong { color: #1e293b; }
+
+    /* ── Footer ── */
+    .store-footer {
+      background: #0f172a;
+      color: #64748b;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+    .store-footer a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+    .store-footer a:hover { text-decoration: underline; }
+    .store-footer kbd {
+      background: #1e293b;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      font-family: inherit;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .store-nav { padding: 0 1rem; }
+      .store-nav-links { display: none; }
+      .store-search { width: 140px; }
+      .store-breadcrumbs { padding: 10px 1rem; }
+      .store-details { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Store Navigation ═══ -->
+  <nav class="store-nav">
+    <div class="store-logo">Tech<span>Vault</span></div>
+    <ul class="store-nav-links">
+      <li><a href="#">Monitors</a></li>
+      <li><a href="#">Laptops</a></li>
+      <li><a href="#">Peripherals</a></li>
+      <li><a href="#">Deals</a></li>
+    </ul>
+    <div class="store-nav-right">
+      <input class="store-search" type="text" placeholder="Search products…">
+      <div class="store-cart">🛒 <span class="store-cart-badge">2</span></div>
+    </div>
+  </nav>
+
+  <!-- ═══ Breadcrumbs ═══ -->
+  <div class="store-breadcrumbs">
+    <a href="#">Home</a><span>›</span>
+    <a href="#">Monitors</a><span>›</span>
+    <a href="#">Gaming</a><span>›</span>
+    VoltEdge XG32 Ultra
+  </div>
+
+  <!-- ═══ HERO — SmartHero takes this over ═══ -->
+  <div class="hero-section" id="hero"></div>
+
+  <!-- ═══ Product Details (store chrome) ═══ -->
+  <section class="store-details">
+    <div class="store-tabs">
+      <div class="store-tab active">Description</div>
+      <div class="store-tab">Specifications</div>
+      <div class="store-tab">Reviews (247)</div>
+      <div class="store-tab">Q&A</div>
+    </div>
+    <div class="store-desc">
+      <h3>VoltEdge XG32 Ultra — 32″ 4K Gaming Monitor</h3>
+      <p>
+        Experience gaming like never before with the VoltEdge XG32 Ultra. Featuring a stunning
+        32-inch 4K UHD IPS panel with a 240Hz refresh rate and 1ms response time, this monitor
+        delivers buttery-smooth visuals for competitive gaming and immersive entertainment.
+      </p>
+      <p>
+        With HDR 1400 certification, 98% DCI-P3 color coverage, and local dimming with 1,152
+        zones, every scene comes alive with breathtaking contrast and vibrant colors. The built-in
+        KVM switch and USB-C hub make it perfect for both gaming and productivity.
+      </p>
+      <p>
+        <strong>Key Features:</strong> 4K UHD (3840×2160) · 240Hz Refresh Rate · 1ms GtG ·
+        HDR 1400 · HDMI 2.1 × 2 · DisplayPort 2.1 · USB-C 90W ·
+        G-SYNC &amp; FreeSync Premium Pro
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="store-footer">
+    <p>Demo store for <a href="#">PersonaWeb.ai</a> — SmartHero personalization engine</p>
+    <p>
+      Press <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> to switch personas ·
+      <kbd>C</kbd> auto-cycle ·
+      <kbd>R</kbd> reset
+    </p>
+  </footer>
+
+  <script src="smarthero-demo.js"></script>
+</body>
+</html>
