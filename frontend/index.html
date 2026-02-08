@@ -750,23 +750,34 @@
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var duration = reduceMotion ? 400 : 2500;
       var start = Date.now();
+
+      function hideLoader() {
+        if (loader) loader.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
       function tick() {
         var elapsed = Date.now() - start;
         var pct = Math.min(100, (elapsed / duration) * 100);
         if (fill) fill.style.width = pct + '%';
         if (elapsed >= duration) {
-          if (loader) loader.classList.add('hidden');
-          document.body.style.overflow = '';
+          hideLoader();
           return;
         }
-        requestAnimationFrame(tick);
+        if (typeof requestAnimationFrame === 'function') requestAnimationFrame(tick);
+        else setTimeout(tick, 16);
       }
+
       document.body.style.overflow = 'hidden';
-      requestAnimationFrame(tick);
+      if (typeof requestAnimationFrame === 'function') requestAnimationFrame(tick);
+      else setTimeout(tick, 0);
       setTimeout(function() {
-        if (loader && !loader.classList.contains('hidden')) loader.classList.add('hidden');
-        document.body.style.overflow = '';
-      }, duration + 400);
+        if (loader && !loader.classList.contains('hidden')) hideLoader();
+      }, duration + 600);
+
+      window.addEventListener('load', function() {
+        if (loader && !loader.classList.contains('hidden')) hideLoader();
+      });
 
       var nav = document.querySelector('.pw-nav');
       if (nav) window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
