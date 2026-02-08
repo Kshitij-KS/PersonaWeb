@@ -654,7 +654,7 @@
       <div class="pw-install-box">
         <div class="pw-install-head">
           <div class="pw-install-dots"><span></span><span></span><span></span></div>
-          <button type="button" class="pw-btn-ghost" style="margin:0;padding:6px 14px;font-size:0.8rem;" aria-label="Copy script snippet to clipboard" onclick="navigator.clipboard.writeText('<script src=\\'https://personaweb.ai/personaweb.js\\'><\\/script>\\n<script>PersonaWeb.init({debug:false});<\\/script>');this.textContent='Copied!';setTimeout(function(){this.textContent='Copy';}.bind(this),1500)">Copy</button>
+          <button type="button" id="pw-copy-snippet" class="pw-btn-ghost" style="margin:0;padding:6px 14px;font-size:0.8rem;" aria-label="Copy script snippet to clipboard">Copy</button>
         </div>
         <pre class="pw-install-code"><span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://personaweb.ai/personaweb.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
 <span class="tag">&lt;script&gt;</span>PersonaWeb.init({<span class="attr">debug</span>:<span class="str">false</span>});<span class="tag">&lt;/script&gt;</span></pre>
@@ -801,6 +801,41 @@
           requestAnimationFrame(animate);
         }, { threshold: 0.5 });
         io2.observe(proofNum);
+      }
+
+      var copyBtn = document.getElementById('pw-copy-snippet');
+      if (copyBtn) {
+        var snippet = '<script src="https://personaweb.ai/personaweb.js"></script>\n<script>PersonaWeb.init({debug:false});</script>';
+        copyBtn.addEventListener('click', function() {
+          var setCopied = function() {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(function() { copyBtn.textContent = 'Copy'; }, 1500);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(snippet).then(setCopied).catch(function() {
+              fallbackCopy(snippet, setCopied);
+            });
+          } else {
+            fallbackCopy(snippet, setCopied);
+          }
+        });
+      }
+
+      function fallbackCopy(text, done) {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done();
+        } catch (e) {
+          console.warn('Copy failed', e);
+        }
       }
 
       console.log('%c PersonaWeb.ai ', 'background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 4px;', 'One script tag. Every visitor sees a different website.');
