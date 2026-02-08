@@ -750,34 +750,23 @@
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var duration = reduceMotion ? 400 : 2500;
       var start = Date.now();
-
-      function hideLoader() {
-        if (loader) loader.classList.add('hidden');
-        document.body.style.overflow = '';
-      }
-
       function tick() {
         var elapsed = Date.now() - start;
         var pct = Math.min(100, (elapsed / duration) * 100);
         if (fill) fill.style.width = pct + '%';
         if (elapsed >= duration) {
-          hideLoader();
+          if (loader) loader.classList.add('hidden');
+          document.body.style.overflow = '';
           return;
         }
-        if (typeof requestAnimationFrame === 'function') requestAnimationFrame(tick);
-        else setTimeout(tick, 16);
+        requestAnimationFrame(tick);
       }
-
       document.body.style.overflow = 'hidden';
-      if (typeof requestAnimationFrame === 'function') requestAnimationFrame(tick);
-      else setTimeout(tick, 0);
+      requestAnimationFrame(tick);
       setTimeout(function() {
-        if (loader && !loader.classList.contains('hidden')) hideLoader();
-      }, duration + 600);
-
-      window.addEventListener('load', function() {
-        if (loader && !loader.classList.contains('hidden')) hideLoader();
-      });
+        if (loader && !loader.classList.contains('hidden')) loader.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, duration + 400);
 
       var nav = document.querySelector('.pw-nav');
       if (nav) window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
@@ -816,7 +805,7 @@
 
       var copyBtn = document.getElementById('pw-copy-snippet');
       if (copyBtn) {
-        var snippet = '<script src="https://personaweb.ai/personaweb.js"></script>\n<script>PersonaWeb.init({debug:false});</script>';
+        var snippet = '<script src="https://personaweb.ai/personaweb.js"><\/script>\n<script>PersonaWeb.init({debug:false});<\/script>';
         copyBtn.addEventListener('click', function() {
           var setCopied = function() {
             copyBtn.textContent = 'Copied!';
