@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    SmartHero Demo — smarthero-demo.js
-   PersonaWeb.ai | Frontend Personalization Engine
+   WebPersona.ai | Frontend Personalization Engine
 
    Controls: 1/2/3 = Switch persona | C = Auto-cycle | R = Reset
    URL Params: ?persona=gamer | ?query=rtx+4090+buy

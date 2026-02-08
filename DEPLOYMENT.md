@@ -1,4 +1,4 @@
-# AURA / PersonaWeb — Deployment & Hosting Guide
+# AURA / WebPersona — Deployment & Hosting Guide
 
 This document explains how to host the demo, what is needed for production‑ready hosting, and what changes (if any) should be made before deployment.
 
@@ -54,7 +54,7 @@ This generates:
 
 ## 4) Making the snippet portable
 
-Currently, `frontend/personaweb.js` auto‑loads:
+Currently, `frontend/webpersona.js` auto‑loads:
 
 ```
 ../aura-core-engine/dist/aura-core.min.js
@@ -63,7 +63,7 @@ Currently, `frontend/personaweb.js` auto‑loads:
 For production hosting, set a fixed CDN URL instead:
 
 ```js
-PersonaWeb.init({
+WebPersona.init({
   engineSrc: "https://your-domain.com/aura-core.min.js"
 });
 ```
@@ -131,14 +131,14 @@ This is judge‑friendly and requires no server.
 **Customer snippet:**
 
 ```html
-<script src="https://cdn.yourdomain.com/personaweb.js"></script>
+<script src="https://cdn.yourdomain.com/webpersona.js"></script>
 ```
 
 Optional config:
 
 ```html
 <script>
-  PersonaWeb.init({
+  WebPersona.init({
     engineSrc: "https://cdn.yourdomain.com/aura-core.min.js",
     debug: false
   });

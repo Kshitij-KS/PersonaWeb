@@ -1,6 +1,6 @@
 # SmartHero Demo — Member B (Frontend)
 
-> PersonaWeb.ai dynamic hero personalization engine — frontend demo
+> WebPersona.ai dynamic hero personalization engine — frontend demo
 
 ## Quick Start
 

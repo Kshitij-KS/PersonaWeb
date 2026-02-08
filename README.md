@@ -1,6 +1,6 @@
-# PersonaWeb.ai
+# WebPersona.ai
 
-PersonaWeb.ai is a plug‑and‑play, safe, templatized website personalization layer built for SMBs. It uses a lightweight decision engine to detect intent and personalize hero content with finite templates and assets.
+WebPersona.ai is a plug‑and‑play, safe, templatized website personalization layer built for SMBs. It uses a lightweight decision engine to detect intent and personalize hero content with finite templates and assets.
 
 ## Key capabilities
 

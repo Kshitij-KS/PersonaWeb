@@ -1,4 +1,4 @@
-# PersonaWeb.ai — 1‑Minute Demo Guide
+# WebPersona.ai — 1‑Minute Demo Guide
 
 This is a quick, judge‑friendly walkthrough you can use live.
 
@@ -64,7 +64,7 @@ Show the `reason` string in the debug panel:
 Show the install snippet in `frontend/README.md`:
 
 ```html
-<script src="personaweb.js"></script>
+<script src="webpersona.js"></script>
 ```
 
 Mention:  

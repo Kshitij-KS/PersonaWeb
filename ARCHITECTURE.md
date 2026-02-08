@@ -1,6 +1,6 @@
-# PersonaWeb / AURA — Complete Architecture Guide
+# WebPersona / AURA — Complete Architecture Guide
 
-This document is a comprehensive technical reference explaining how PersonaWeb works end‑to‑end. Use it to understand the system, learn from the code, and explain it to judges or teammates.
+This document is a comprehensive technical reference explaining how WebPersona works end‑to‑end. Use it to understand the system, learn from the code, and explain it to judges or teammates.
 
 ---
 
@@ -10,7 +10,7 @@ This document is a comprehensive technical reference explaining how PersonaWeb w
 2. [System Overview](#2-system-overview)
 3. [Repository Structure](#3-repository-structure)
 4. [AuraCore Engine (Backend Logic)](#4-auracore-engine-backend-logic)
-5. [Frontend Snippet (PersonaWeb.js)](#5-frontend-snippet-personawebjs)
+5. [Frontend Snippet (WebPersona.js)](#5-frontend-snippet-webpersonajs)
 6. [Intent Detection Deep Dive](#6-intent-detection-deep-dive)
 7. [Decision Engine Logic](#7-decision-engine-logic)
 8. [Templates & Assets](#8-templates--assets)
@@ -33,7 +33,7 @@ This document is a comprehensive technical reference explaining how PersonaWeb w
 Most websites show the same homepage to every visitor — a gamer from Reddit sees the same hero as a budget shopper from an email campaign. Enterprise companies solve this with expensive personalization tools. SMBs can't.
 
 ### The Solution
-PersonaWeb is a **plug‑and‑play personalization layer** that:
+WebPersona is a **plug‑and‑play personalization layer** that:
 - Installs via a single `<script>` tag
 - Detects visitor intent from multiple signals
 - Swaps hero content using finite, safe templates
@@ -56,7 +56,7 @@ The system is **safe by design** — it only uses predefined templates and curat
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │   ┌─────────────────────────────────────────────────────────┐   │
-│   │              frontend/personaweb.js                      │   │
+│   │              frontend/webpersona.js                      │   │
 │   │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐  │   │
 │   │  │   Signal    │  │   Template  │  │    Renderer     │  │   │
 │   │  │  Collector  │  │   Registry  │  │  (DOM Mutator)  │  │   │
@@ -83,14 +83,14 @@ The system is **safe by design** — it only uses predefined templates and curat
 
 1. **AuraCore Engine** (`aura-core-engine/`) — The decision brain. Detects intent, scores signals, picks templates, generates explainable decisions.
 
-2. **PersonaWeb Snippet** (`frontend/personaweb.js`) — The frontend widget. Collects signals, calls AuraCore, renders the personalized hero, shows debug panel.
+2. **WebPersona Snippet** (`frontend/webpersona.js`) — The frontend widget. Collects signals, calls AuraCore, renders the personalized hero, shows debug panel.
 
 ---
 
 ## 3) Repository Structure
 
 ```
-PersonaWeb/
+WebPersona/
 ├── aura-core-engine/           # Decision engine (Person 1's work)
 │   ├── src/
 │   │   ├── config/
@@ -119,8 +119,8 @@ PersonaWeb/
 │   └── package.json
 │
 ├── frontend/                   # Frontend snippet (Person 2's work)
-│   ├── personaweb.js               # Main injectable snippet
-│   ├── personaweb.css              # Isolated styles (.pw- prefix)
+│   ├── webpersona.js               # Main injectable snippet
+│   ├── webpersona.css              # Isolated styles (.pw- prefix)
 │   ├── index.html                  # Landing page
 │   ├── demo/
 │   │   └── store.html              # TechVault e-commerce demo
@@ -232,7 +232,7 @@ INTENT_TO_IMAGE = {
 
 ---
 
-## 5) Frontend Snippet (PersonaWeb.js)
+## 5) Frontend Snippet (WebPersona.js)
 
 The frontend snippet is a **single JavaScript file** that:
 1. Auto-loads AuraCore bundle
@@ -573,10 +573,10 @@ async function decideWithCore(signals) {
 
 ```
 1. Page loads
-   └─> personaweb.js executes
+   └─> webpersona.js executes
 
 2. Snippet initialization
-   └─> Auto-loads personaweb.css
+   └─> Auto-loads webpersona.css
    └─> Finds hero section (or creates one)
    └─> Builds debug panel (if enabled)
 
@@ -812,7 +812,7 @@ Tests are in `aura-core-engine/tests/`:
 
 | File | Purpose |
 |------|---------|
-| `frontend/personaweb.js` | Main injectable snippet |
+| `frontend/webpersona.js` | Main injectable snippet |
 | `frontend/demo/store.html` | TechVault demo store |
 | `aura-core-engine/src/core.js` | AuraCore orchestrator |
 | `aura-core-engine/src/config/constants.js` | All enums and mappings |
@@ -841,7 +841,7 @@ Tests are in `aura-core-engine/tests/`:
 
 ## Summary
 
-PersonaWeb is a **safe, explainable, plug-and-play personalization system**:
+WebPersona is a **safe, explainable, plug-and-play personalization system**:
 
 1. **Signals** are collected from URL, referrer, behavior, and optional overrides
 2. **AuraCore** scores signals using weighted rules and picks the best intent

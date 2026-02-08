@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════════
-   PersonaWeb.ai — Intelligent Website Personalization Engine
+   WebPersona.ai — Intelligent Website Personalization Engine
    v1.0.0 | MIT HackNation 2026
 
    One script tag. Every visitor sees a different website.
 
-   Install:   <script src="https://personaweb.ai/personaweb.js"></script>
+   Install:   <script src="https://webpersona.ai/webpersona.js"></script>
    Demo:      ?utm_term=buy+4k+monitor  |  ?persona=gaming
    Keys:      1-4 Switch  ·  D Debug  ·  R Reset
    ═══════════════════════════════════════════════════════════════════ */
@@ -143,7 +143,7 @@
     fromSession() {
       if (this.hasUrlOverride()) return [];
       try {
-        const stored = win.sessionStorage && win.sessionStorage.getItem('personaweb_persona');
+        const stored = win.sessionStorage && win.sessionStorage.getItem('webpersona_persona');
         if (stored && TEMPLATES[stored])
           return [{ source: 'session', key: 'persona', value: stored, weight: 5 }];
       } catch (e) { /* ignore */ }
@@ -287,7 +287,7 @@
             body: JSON.stringify({ signals, templates: Object.keys(TEMPLATES) }),
           });
           if (res.ok) return await res.json();
-        } catch (e) { console.warn('[PersonaWeb] API failed, falling back to local engine', e); }
+        } catch (e) { console.warn('[WebPersona] API failed, falling back to local engine', e); }
       }
 
       /* Local mode — weighted scoring */
@@ -375,7 +375,7 @@
         signals,
         scores,
         timestamp:  new Date().toISOString(),
-        engine:     'PersonaWeb.ai v' + VERSION,
+        engine:     'WebPersona.ai v' + VERSION,
       };
     },
   };
@@ -439,7 +439,7 @@
   function getScriptBase() {
     const scripts = doc.querySelectorAll('script[src]');
     for (const s of scripts) {
-      if (s.src && s.src.includes('personaweb.js')) {
+      if (s.src && s.src.includes('webpersona.js')) {
         return s.src.replace(/[^/]+$/, '');
       }
     }
@@ -478,7 +478,7 @@
       auraInstance.init();
       return auraInstance;
     } catch (e) {
-      console.warn('[PersonaWeb] AuraCore unavailable, using local engine.', e);
+      console.warn('[WebPersona] AuraCore unavailable, using local engine.', e);
       return null;
     }
   }
@@ -545,7 +545,7 @@
       this.heroEl.innerHTML = `
         <div class="pw-shimmer">
           <div class="pw-shimmer-brain">🧠</div>
-          <div class="pw-shimmer-text">PersonaWeb AI analyzing visitor…</div>
+          <div class="pw-shimmer-text">WebPersona AI analyzing visitor…</div>
           <div class="pw-shimmer-bars">
             <div class="pw-shimmer-bar"></div>
             <div class="pw-shimmer-bar pw-shimmer-bar-s"></div>
@@ -569,7 +569,7 @@
 
       /* Persist chosen persona for multi-page session */
       try {
-        if (win.sessionStorage) win.sessionStorage.setItem('personaweb_persona', decision.template);
+        if (win.sessionStorage) win.sessionStorage.setItem('webpersona_persona', decision.template);
       } catch (e) { /* ignore */ }
 
       /* Start countdown if budget */
@@ -708,8 +708,8 @@
     debugEl.className = 'pw-debug';
     debugEl.innerHTML = `
       <div class="pw-debug-head" id="pw-drag">
-        <span>🧠 PersonaWeb Debug</span>
-        <button class="pw-debug-min" onclick="PersonaWeb.toggleDebug()">−</button>
+        <span>🧠 WebPersona Debug</span>
+        <button class="pw-debug-min" onclick="WebPersona.toggleDebug()">−</button>
       </div>
       <div class="pw-debug-body" id="pw-debug-body">
         <div class="pw-debug-sec">
@@ -728,10 +728,10 @@
         <div class="pw-debug-sec">
           <div class="pw-debug-lbl">PREVIEW INTENTS</div>
           <div class="pw-debug-btns">
-            <button class="pw-dbtn" data-t="buy_now" onclick="PersonaWeb.preview('buy_now')">🏆 Buyer</button>
-            <button class="pw-dbtn" data-t="compare" onclick="PersonaWeb.preview('compare')">📊 Research</button>
-            <button class="pw-dbtn" data-t="gaming"  onclick="PersonaWeb.preview('gaming')">🎮 Gamer</button>
-            <button class="pw-dbtn" data-t="budget"  onclick="PersonaWeb.preview('budget')">💰 Deal</button>
+            <button class="pw-dbtn" data-t="buy_now" onclick="WebPersona.preview('buy_now')">🏆 Buyer</button>
+            <button class="pw-dbtn" data-t="compare" onclick="WebPersona.preview('compare')">📊 Research</button>
+            <button class="pw-dbtn" data-t="gaming"  onclick="WebPersona.preview('gaming')">🎮 Gamer</button>
+            <button class="pw-dbtn" data-t="budget"  onclick="WebPersona.preview('budget')">💰 Deal</button>
           </div>
         </div>
         <div class="pw-debug-sec">
@@ -748,8 +748,8 @@
         </div>
         <div class="pw-debug-sec">
           <div class="pw-debug-ctrls">
-            <button class="pw-dctrl" onclick="PersonaWeb.reset()">🔄 Reset</button>
-            <button class="pw-dctrl" onclick="PersonaWeb.cycle()">▶ Auto-Cycle</button>
+            <button class="pw-dctrl" onclick="WebPersona.reset()">🔄 Reset</button>
+            <button class="pw-dctrl" onclick="WebPersona.cycle()">▶ Auto-Cycle</button>
           </div>
         </div>
         <div class="pw-debug-foot">
@@ -821,7 +821,7 @@
     track(event, data) {
       const entry = { event, data, time: new Date().toISOString() };
       this.events.push(entry);
-      console.log(`%c🎯 [PersonaWeb] ${event}`, 'color:#818cf8;font-weight:bold', data);
+      console.log(`%c🎯 [WebPersona] ${event}`, 'color:#818cf8;font-weight:bold', data);
     },
   };
 
@@ -849,16 +849,16 @@
 
   /* ╔═══════════════════════════════════════════════════════════════╗
      ║  10. CSS AUTO-LOADER                                          ║
-     ║  Detects own script URL and loads personaweb.css from there   ║
+     ║  Detects own script URL and loads webpersona.css from there   ║
      ╚═══════════════════════════════════════════════════════════════╝ */
 
   function autoLoadCSS() {
     /* Skip if CSS is already loaded */
-    if (doc.querySelector('link[href*="personaweb"]')) return;
+    if (doc.querySelector('link[href*="webpersona"]')) return;
     const base = getScriptBase();
     const link = doc.createElement('link');
     link.rel = 'stylesheet';
-    link.href = base + 'personaweb.css';
+    link.href = base + 'webpersona.css';
     doc.head.appendChild(link);
   }
 
@@ -876,7 +876,7 @@
     try {
       if (Signals.hasUrlOverride()) {
         try {
-          if (win.sessionStorage) win.sessionStorage.removeItem('personaweb_persona');
+          if (win.sessionStorage) win.sessionStorage.removeItem('webpersona_persona');
         } catch (e) { /* ignore */ }
       }
       Render.shimmer();
@@ -905,9 +905,9 @@
 
       /* Performance report for judges */
       const total = performance.now() - t0;
-      console.log('%c[PersonaWeb] Decision Object:', 'color:#22d3ee;font-weight:bold');
+      console.log('%c[WebPersona] Decision Object:', 'color:#22d3ee;font-weight:bold');
       console.log(JSON.parse(JSON.stringify(decision)));
-      console.group('%c⏱️ PersonaWeb Performance', 'color:#22c55e;font-weight:bold');
+      console.group('%c⏱️ WebPersona Performance', 'color:#22c55e;font-weight:bold');
       console.log(`Signal collection: ${tSig.toFixed(1)}ms`);
       console.log(`Decision engine:   ${tDec.toFixed(1)}ms`);
       console.log(`Template render:   ${tRen.toFixed(1)}ms`);
@@ -915,7 +915,7 @@
       console.groupEnd();
     } catch (err) {
       /* Error boundary — graceful degradation */
-      console.error('[PersonaWeb] Initialization failed:', err);
+      console.error('[WebPersona] Initialization failed:', err);
       if (Render.heroEl) {
         Render.heroEl.innerHTML = `
           <div style="padding:3rem;text-align:center;font-family:sans-serif;color:#64748b">
@@ -947,7 +947,7 @@
       logEvent('preview', intent);
       Analytics.track('preview', { template: intent });
     } catch (err) {
-      console.error('[PersonaWeb] preview failed:', err);
+      console.error('[WebPersona] preview failed:', err);
       if (Render.heroEl) Render.shimmer();
       toast('⚠️ Preview failed');
     } finally {
@@ -990,8 +990,8 @@
     doc.addEventListener('keydown', e => {
       if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
       if (map[e.key]) return previewIntent(map[e.key]);
-      if (e.key.toLowerCase() === 'd') return win.PersonaWeb.toggleDebug();
-      if (e.key.toLowerCase() === 'r') return win.PersonaWeb.reset();
+      if (e.key.toLowerCase() === 'd') return win.WebPersona.toggleDebug();
+      if (e.key.toLowerCase() === 'r') return win.WebPersona.reset();
       if (e.key.toLowerCase() === 'c') return toggleCycle();
     });
   }
@@ -1000,7 +1000,7 @@
      ║  13. PUBLIC API                                               ║
      ╚═══════════════════════════════════════════════════════════════╝ */
 
-  win.PersonaWeb = {
+  win.WebPersona = {
     version: VERSION,
 
     init(config) {
@@ -1038,7 +1038,7 @@
 
     on(event, fn) {
       /* Simple event emitter for CTA tracking integration */
-      doc.addEventListener('personaweb:' + event, e => fn(e.detail));
+      doc.addEventListener('webpersona:' + event, e => fn(e.detail));
     },
   };
 
@@ -1055,11 +1055,11 @@
 
     /* Welcome message */
     console.log(
-      '%c🧠 PersonaWeb.ai v' + VERSION,
+      '%c🧠 WebPersona.ai v' + VERSION,
       'font-size:16px;color:#818cf8;background:#0f172a;padding:8px 16px;border-radius:6px;font-weight:bold;'
     );
     console.log(
-      '%c  Keys: 1-4 Switch · D Debug · C Cycle · R Reset\n  API:  PersonaWeb.getDecision()  ·  PersonaWeb.preview("gaming")',
+      '%c  Keys: 1-4 Switch · D Debug · C Cycle · R Reset\n  API:  WebPersona.getDecision()  ·  WebPersona.preview("gaming")',
       'color:#94a3b8;font-size:11px;'
     );
   }

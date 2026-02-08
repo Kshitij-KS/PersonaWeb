@@ -1,4 +1,4 @@
-# PersonaWeb.ai
+# WebPersona.ai
 
 **Every visitor gets a different website. Automatically.**
 
@@ -10,7 +10,7 @@ Built for **MIT HackNation 2026** — VC Track
 
 ## What It Does
 
-PersonaWeb.ai is a single JavaScript snippet that transforms any website's hero section based on visitor intent. A gamer from Reddit sees a gaming-themed hero. A deal hunter from an email campaign sees a flash sale. A researcher from Google sees specs and comparisons.
+WebPersona.ai is a single JavaScript snippet that transforms any website's hero section based on visitor intent. A gamer from Reddit sees a gaming-themed hero. A deal hunter from an email campaign sees a flash sale. A researcher from Google sees specs and comparisons.
 
 **No backend needed. No config needed. Just paste one script tag.**
 
@@ -18,10 +18,10 @@ PersonaWeb.ai is a single JavaScript snippet that transforms any website's hero 
 
 ```html
 <!-- Add before </body> on any page -->
-<script src="personaweb.js"></script>
+<script src="webpersona.js"></script>
 ```
 
-That's it. PersonaWeb auto-detects the hero section and personalizes it.
+That's it. WebPersona auto-detects the hero section and personalizes it.
 
 ### Local demo (with AURA Core Engine)
 
@@ -50,7 +50,7 @@ decision engine.
 ## Architecture
 
 ```
-personaweb.js (single injectable file)
+webpersona.js (single injectable file)
 │
 ├── TEMPLATE_REGISTRY    4 hero templates with content slots (JSON data)
 ├── ASSET_LIBRARY        6 curated images mapped to intents
@@ -60,7 +60,7 @@ personaweb.js (single injectable file)
 ├── DebugPanel           Preview mode + signal inspector + decision viewer
 ├── Analytics            CTA click tracking + template view logging
 ├── BackendHook          Optional API swap (future)
-└── PublicAPI            PersonaWeb.init() / .preview() / .getDecision()
+└── PublicAPI            WebPersona.init() / .preview() / .getDecision()
 ```
 
 ## Decision Object
@@ -91,7 +91,7 @@ Every personalization decision is fully explainable:
 - **Backend-Ready** — One-line config switches from local rules to API mode
 - **Debug Panel** — Preview all variants, inspect signals, see decision reasoning
 - **Safe Fallback** — Defaults to base content if detection fails
-- **Bookmarklet** — Inject PersonaWeb onto any live website via DevTools
+- **Bookmarklet** — Inject WebPersona onto any live website via DevTools
 
 ## Backend Integration
 
@@ -100,7 +100,7 @@ Every personalization decision is fully explainable:
 // No config needed. AuraCore is loaded automatically.
 
 // When backend is ready: one-line swap
-PersonaWeb.init({
+WebPersona.init({
   // Optional: override AuraCore bundle location
   engineSrc: 'https://your-cdn.com/aura-core.min.js'
 });
@@ -123,10 +123,10 @@ The API receives the collected signals and returns the same decision object form
 ## File Structure
 
 ```
-personaweb.ai/
+webpersona.ai/
 ├── index.html          Landing page (the product)
-├── personaweb.js       The engine (single injectable snippet)
-├── personaweb.css      Widget + template styles
+├── webpersona.js       The engine (single injectable snippet)
+├── webpersona.css      Widget + template styles
 ├── demo/
 │   └── store.html      TechVault demo store (snippet installed)
 └── README.md           This file
@@ -142,7 +142,7 @@ personaweb.ai/
 
 ## Team
 
-**PersonaWeb.ai** — MIT HackNation 2026, VC Track
+**WebPersona.ai** — MIT HackNation 2026, VC Track
 
 ---
 
