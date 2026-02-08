@@ -75,6 +75,7 @@
       50% { opacity: 1; transform: scale(1.05); }
     }
     @keyframes pw-dot-grid { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.5; } }
+    @keyframes pw-loader-fallback { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 
     html { scroll-behavior: smooth; }
     body {
@@ -100,6 +101,8 @@
       position: fixed; inset: 0; z-index: 10000; background: var(--bg);
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
       transition: opacity 0.5s var(--ease), visibility 0.5s;
+      /* Fail-safe: hide loader even if JS fails */
+      animation: pw-loader-fallback 0.01ms linear 3.4s forwards;
     }
     #pw-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
     .pw-loader-logo { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
