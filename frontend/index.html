@@ -409,6 +409,113 @@
       border-color: rgba(99,102,241,0.3); transform: translateY(-2px);
     }
 
+    /* ── Founder Modal ── */
+    .pw-founder { cursor: pointer; position: relative; }
+    .pw-founder::after {
+      content: 'Click to view'; position: absolute; bottom: 12px; right: 12px;
+      font-size: 0.7rem; color: var(--text3); opacity: 0;
+      transition: opacity 0.25s var(--ease);
+    }
+    .pw-founder:hover::after { opacity: 1; }
+    @media (hover: none) { .pw-founder::after { display: none; } }
+
+    .pw-modal-overlay {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s var(--ease), visibility 0.3s;
+    }
+    .pw-modal-overlay.active { opacity: 1; visibility: visible; }
+    .pw-modal {
+      background: var(--bg-elevated); border: 1px solid var(--border-strong);
+      border-radius: var(--radius-xl); max-width: 480px; width: 100%;
+      max-height: 90vh; overflow-y: auto; position: relative;
+      transform: scale(0.9) translateY(20px); opacity: 0;
+      transition: transform 0.35s var(--spring), opacity 0.3s var(--ease);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+    }
+    .pw-modal-overlay.active .pw-modal { transform: scale(1) translateY(0); opacity: 1; }
+    .pw-modal-close {
+      position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50%; color: var(--text2); font-size: 1.25rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s var(--ease); z-index: 10;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pw-modal-close:hover { background: var(--surface-hover); color: var(--text); border-color: var(--border-strong); }
+    .pw-modal-close:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+    .pw-modal-header {
+      padding: 48px 32px 24px; text-align: center;
+      background: linear-gradient(180deg, rgba(99,102,241,0.08) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .pw-modal-avatar {
+      width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(168,85,247,0.25));
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid var(--border-strong); box-shadow: 0 12px 32px rgba(99,102,241,0.25);
+      overflow: hidden;
+    }
+    .pw-modal-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .pw-modal-name { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .pw-modal-role { font-size: 1rem; color: var(--secondary); font-weight: 600; }
+    .pw-modal-body { padding: 28px 32px 32px; }
+    .pw-modal-bio { font-size: 1rem; color: var(--text2); line-height: 1.7; margin-bottom: 24px; text-align: center; }
+    .pw-modal-section { margin-bottom: 20px; }
+    .pw-modal-section-title {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text3); margin-bottom: 10px; font-weight: 600;
+    }
+    .pw-modal-skills {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    }
+    .pw-modal-skill {
+      padding: 8px 16px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.85rem; color: var(--text2);
+    }
+    .pw-modal-links {
+      display: flex; gap: 12px; justify-content: center; margin-top: 24px;
+    }
+    .pw-modal-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); font-size: 0.9rem; font-weight: 500;
+      color: var(--text2); text-decoration: none;
+      transition: all 0.25s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pw-modal-link:hover {
+      background: rgba(99,102,241,0.15); color: var(--secondary);
+      border-color: rgba(99,102,241,0.3); text-decoration: none;
+    }
+    .pw-modal-link:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+
+    /* Modal Mobile Styles */
+    @media (max-width: 600px) {
+      .pw-modal-overlay { padding: 12px; align-items: flex-end; }
+      .pw-modal {
+        max-height: 85vh; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        margin-bottom: 0;
+      }
+      .pw-modal-overlay.active .pw-modal { transform: scale(1) translateY(0); }
+      .pw-modal-header { padding: 40px 24px 20px; }
+      .pw-modal-avatar { width: 100px; height: 100px; margin-bottom: 16px; }
+      .pw-modal-name { font-size: 1.3rem; }
+      .pw-modal-role { font-size: 0.9rem; }
+      .pw-modal-body { padding: 20px 24px 28px; }
+      .pw-modal-bio { font-size: 0.95rem; margin-bottom: 20px; }
+      .pw-modal-close { top: 12px; right: 12px; width: 36px; height: 36px; font-size: 1.1rem; }
+      .pw-modal-links { flex-direction: column; gap: 10px; }
+      .pw-modal-link { width: 100%; justify-content: center; padding: 14px 24px; }
+    }
+    @media (max-width: 380px) {
+      .pw-modal-avatar { width: 88px; height: 88px; }
+      .pw-modal-name { font-size: 1.2rem; }
+      .pw-modal-skill { padding: 6px 12px; font-size: 0.8rem; }
+    }
+
     /* ── Footer ── */
     .pw-footer {
       border-top: 1px solid var(--border); padding: 48px 28px; text-align: center;
@@ -539,6 +646,181 @@
       .pw-founder-avatar { width: 80px; height: 80px; }
       .pw-proof-num { font-size: 2.25rem; }
     }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       MOBILE OPTIMIZATION ENHANCEMENTS
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* Mobile Menu Button & Overlay */
+    .pw-mobile-menu-btn {
+      display: none;
+      width: 44px; height: 44px; min-width: 44px; min-height: 44px;
+      background: transparent; border: none; cursor: pointer;
+      padding: 10px; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+      position: relative; z-index: 1001;
+    }
+    .pw-mobile-menu-btn span {
+      display: block; width: 22px; height: 2px; background: var(--text);
+      border-radius: 2px; transition: all 0.3s var(--ease);
+    }
+    .pw-mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .pw-mobile-menu-btn.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .pw-mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .pw-mobile-nav {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(6,6,10,0.98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      z-index: 999; padding: 100px 24px 40px;
+      flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      opacity: 0; visibility: hidden; transition: opacity 0.3s var(--ease), visibility 0.3s;
+    }
+    .pw-mobile-nav.active { opacity: 1; visibility: visible; }
+    .pw-mobile-nav a {
+      display: block; padding: 16px 32px; width: 100%; max-width: 280px; text-align: center;
+      font-size: 1.1rem; font-weight: 500; color: var(--text2); text-decoration: none;
+      border-radius: var(--radius); transition: all 0.25s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pw-mobile-nav a:hover, .pw-mobile-nav a:focus { background: var(--surface); color: var(--text); }
+    .pw-mobile-nav .pw-nav-cta {
+      margin-top: 16px; width: 100%; max-width: 280px; text-align: center; justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .pw-mobile-menu-btn { display: flex; }
+      .pw-nav-links { display: none !important; }
+      .pw-nav-cta { display: none; }
+      .pw-mobile-nav { display: flex; }
+      body.mobile-menu-open { overflow: hidden; position: fixed; width: 100%; }
+    }
+
+    /* Enhanced Mobile Hero */
+    @media (max-width: 600px) {
+      .pw-hero-badge { padding: 6px 14px; font-size: 0.7rem; margin-bottom: 20px; gap: 8px; }
+      .pw-hero-badge-dot { width: 5px; height: 5px; }
+      .pw-hero h1 { margin-bottom: 12px; }
+      .pw-hero-cta { width: 100%; max-width: 280px; text-align: center; justify-content: center; }
+    }
+
+    /* Improved Mobile Cards & Grids */
+    @media (max-width: 600px) {
+      .pw-problem-card { text-align: center; }
+      .pw-problem-card h3 { font-size: 1rem; }
+      .pw-problem-card p { font-size: 0.9rem; }
+      .pw-step { text-align: center; }
+      .pw-step-num { width: 48px; height: 48px; font-size: 1.15rem; margin-bottom: 18px; }
+      .pw-step h3 { font-size: 1.05rem; }
+      .pw-step p { font-size: 0.9rem; }
+      .pw-tpl { text-align: center; padding: 24px 20px; }
+      .pw-tpl-icon { font-size: 2rem; margin-bottom: 12px; }
+      .pw-tpl h3 { font-size: 1rem; }
+      .pw-tpl p { font-size: 0.85rem; }
+    }
+
+    /* Better Mobile Install Box */
+    @media (max-width: 600px) {
+      .pw-install-box { margin: 0 -2px; border-radius: 16px; }
+      .pw-install-head { flex-wrap: wrap; gap: 8px; }
+      #pw-copy-snippet { width: auto; flex-shrink: 0; }
+    }
+
+    /* Mobile Founder Cards */
+    @media (max-width: 600px) {
+      .pw-founder { text-align: center; }
+      .pw-founder-avatar { width: 80px; height: 80px; margin-bottom: 16px; }
+      .pw-founder h3 { font-size: 1.15rem; }
+      .pw-founder-role { font-size: 0.85rem; margin-bottom: 12px; }
+      .pw-founder-bio { font-size: 0.9rem; }
+      .pw-founder-links { margin-top: 16px; }
+    }
+
+    /* Touch-friendly interactions */
+    @media (hover: none) and (pointer: coarse) {
+      .pw-hero-persona:hover, .pw-step:hover, .pw-tpl:hover, .pw-founder:hover, .pw-problem-card:hover {
+        transform: none; box-shadow: none;
+      }
+      .pw-hero-persona:active, .pw-step:active, .pw-tpl:active, .pw-founder:active {
+        transform: scale(0.98); transition-duration: 0.1s;
+      }
+      .pw-hero-cta:hover, .pw-btn-primary:hover, .pw-btn-ghost:hover, .pw-nav-cta:hover {
+        transform: none;
+      }
+      .pw-hero-cta:active, .pw-btn-primary:active, .pw-btn-ghost:active, .pw-nav-cta:active {
+        transform: scale(0.97); transition-duration: 0.1s;
+      }
+    }
+
+    /* Prevent text size adjustment on rotation */
+    @media (max-width: 768px) {
+      html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    }
+
+    /* Better horizontal scroll prevention */
+    @media (max-width: 600px) {
+      .pw-section, .pw-hero, .pw-cta-section, .pw-footer { overflow-x: hidden; }
+      .pw-code-block, .pw-install-code {
+        overflow-x: auto; overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .pw-code-block::-webkit-scrollbar, .pw-install-code::-webkit-scrollbar { height: 4px; }
+      .pw-code-block::-webkit-scrollbar-thumb, .pw-install-code::-webkit-scrollbar-thumb {
+        background: var(--border-strong); border-radius: 2px;
+      }
+    }
+
+    /* Landscape phone optimization */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .pw-hero { min-height: auto; padding-top: 80px; padding-bottom: 40px; gap: 24px; }
+      .pw-hero h1 { font-size: 1.5rem; }
+      .pw-hero h2 { font-size: 0.95rem; margin-bottom: 12px; }
+      .pw-hero-sub { font-size: 0.85rem; margin-bottom: 20px; }
+      .pw-hero-visual { max-width: 300px; }
+      .pw-hero-browser-body { height: 180px; }
+      .pw-hero-persona { width: 52px; height: 52px; }
+      .pw-hero-persona span { font-size: 1.2rem; }
+      #pw-loader { padding: 20px; }
+      .pw-loader-logo { font-size: 1.25rem; }
+      .pw-section { padding: 48px 16px; }
+      .pw-cta-section { padding: 48px 16px; }
+    }
+
+    /* Extra small devices (SE, mini phones) */
+    @media (max-width: 350px) {
+      .pw-nav-inner { padding: 0 12px; }
+      .pw-logo { font-size: 1.15rem; }
+      .pw-hero { padding: 80px 12px 48px; }
+      .pw-hero h1 { font-size: 1.45rem; }
+      .pw-hero h2 { font-size: 1rem; }
+      .pw-hero-sub { font-size: 0.9rem; }
+      .pw-hero-cta { padding: 12px 20px; font-size: 0.9rem; }
+      .pw-hero-personas { gap: 8px; padding: 16px 12px; }
+      .pw-hero-persona { width: 52px; height: 52px; border-radius: 14px; }
+      .pw-hero-persona span { font-size: 1.2rem; margin-bottom: 4px; }
+      .pw-section { padding: 48px 12px; }
+      .pw-section-title h2 { font-size: 1.35rem; }
+      .pw-section-title p { font-size: 0.9rem; }
+      .pw-problem-card, .pw-step, .pw-tpl { padding: 20px 16px; }
+      .pw-btn-primary, .pw-btn-ghost { padding: 12px 20px; font-size: 0.9rem; }
+      .pw-cta-section h2 { font-size: 1.35rem; }
+      .pw-footer { padding: 24px 12px; font-size: 0.85rem; }
+    }
+
+    /* High DPI screen optimizations */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .pw-hero-browser, .pw-install-box, .pw-problem-card, .pw-step, .pw-tpl, .pw-founder, .pw-proof {
+        border-width: 0.5px;
+      }
+    }
+
+    /* Focus visible for keyboard nav on mobile */
+    @media (max-width: 768px) {
+      .pw-mobile-nav a:focus-visible {
+        outline: 2px solid var(--secondary); outline-offset: 2px;
+        background: var(--surface);
+      }
+    }
   </style>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -566,8 +848,21 @@
         <li><a href="#founders">Founders</a></li>
       </ul>
       <a href="demo/store.html" class="pw-nav-cta">Try Live Demo</a>
+      <button class="pw-mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="pw-mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Overlay -->
+  <div id="pw-mobile-nav" class="pw-mobile-nav" aria-hidden="true">
+    <a href="#problem">The Problem</a>
+    <a href="#solution">The Solution</a>
+    <a href="#how">How It Works</a>
+    <a href="#demo">Live Demo</a>
+    <a href="#founders">Founders</a>
+    <a href="demo/store.html" class="pw-nav-cta">Try Live Demo</a>
+  </div>
 
   <main id="main">
     <!-- Hero -->
@@ -745,7 +1040,7 @@
         <p>Building the future of intent-driven web experiences.</p>
       </div>
       <div class="pw-founders">
-        <div class="pw-founder">
+        <div class="pw-founder" role="button" tabindex="0" aria-label="View Ujjawal Anand's profile" data-founder="ujjawal">
           <div class="pw-founder-avatar" aria-hidden="true">
             <img src="images/ujjawal.png" alt="Ujjawal Anand" width="100" height="100" loading="lazy">
           </div>
@@ -753,11 +1048,11 @@
           <div class="pw-founder-role">Co-Founder</div>
           <p class="pw-founder-bio">Driving product and vision. Previously building developer tools and AI-powered experiences.</p>
           <div class="pw-founder-links">
-            <a href="https://www.linkedin.com/in/ujjawalanandofficial/" target="_blank" rel="noopener" aria-label="Ujjawal LinkedIn">in</a>
-            <a href="https://github.com/anand-official" target="_blank" rel="noopener" aria-label="Ujjawal GitHub">⌘</a>
+            <a href="https://www.linkedin.com/in/ujjawalanandofficial/" target="_blank" rel="noopener" aria-label="Ujjawal LinkedIn" onclick="event.stopPropagation()">in</a>
+            <a href="https://github.com/anand-official" target="_blank" rel="noopener" aria-label="Ujjawal GitHub" onclick="event.stopPropagation()">⌘</a>
           </div>
         </div>
-        <div class="pw-founder">
+        <div class="pw-founder" role="button" tabindex="0" aria-label="View Kshitij Singh's profile" data-founder="kshitij">
           <div class="pw-founder-avatar" aria-hidden="true">
             <img src="images/kshitij.png" alt="Kshitij Singh" width="100" height="100" loading="lazy">
           </div>
@@ -765,13 +1060,35 @@
           <div class="pw-founder-role">Co-Founder</div>
           <p class="pw-founder-bio">Product‑minded builder with a cloud and DevOps edge, focused on reliable, scalable experiences.</p>
           <div class="pw-founder-links">
-            <a href="https://www.linkedin.com/in/kshitij-singh-ks/" target="_blank" rel="noopener" aria-label="Kshitij LinkedIn">in</a>
-            <a href="https://github.com/Kshitij-KS" target="_blank" rel="noopener" aria-label="Kshitij GitHub">⌘</a>
+            <a href="https://www.linkedin.com/in/kshitij-singh-ks/" target="_blank" rel="noopener" aria-label="Kshitij LinkedIn" onclick="event.stopPropagation()">in</a>
+            <a href="https://github.com/Kshitij-KS" target="_blank" rel="noopener" aria-label="Kshitij GitHub" onclick="event.stopPropagation()">⌘</a>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Founder Modal -->
+  <div id="pw-founder-modal" class="pw-modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="pw-modal-name">
+    <div class="pw-modal">
+      <button class="pw-modal-close" aria-label="Close modal">&times;</button>
+      <div class="pw-modal-header">
+        <div class="pw-modal-avatar">
+          <img id="pw-modal-img" src="" alt="" width="120" height="120">
+        </div>
+        <h3 id="pw-modal-name" class="pw-modal-name"></h3>
+        <div id="pw-modal-role" class="pw-modal-role"></div>
+      </div>
+      <div class="pw-modal-body">
+        <p id="pw-modal-bio" class="pw-modal-bio"></p>
+        <div class="pw-modal-section">
+          <div class="pw-modal-section-title">Expertise</div>
+          <div id="pw-modal-skills" class="pw-modal-skills"></div>
+        </div>
+        <div id="pw-modal-links" class="pw-modal-links"></div>
+      </div>
+    </div>
+  </div>
 
   <footer class="pw-footer">
     <p><strong>WebPersona</strong> — Built for MIT HackNation 2026</p>
@@ -872,6 +1189,159 @@
           console.warn('Copy failed', e);
         }
       }
+
+      // Mobile menu functionality
+      var mobileMenuBtn = document.querySelector('.pw-mobile-menu-btn');
+      var mobileNav = document.getElementById('pw-mobile-nav');
+      var mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : [];
+      var scrollPos = 0;
+
+      function openMobileMenu() {
+        scrollPos = window.scrollY;
+        mobileMenuBtn.classList.add('active');
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        mobileMenuBtn.setAttribute('aria-label', 'Close menu');
+        mobileNav.classList.add('active');
+        mobileNav.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('mobile-menu-open');
+        document.body.style.top = -scrollPos + 'px';
+      }
+
+      function closeMobileMenu() {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+        mobileNav.classList.remove('active');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('mobile-menu-open');
+        document.body.style.top = '';
+        window.scrollTo(0, scrollPos);
+      }
+
+      if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', function() {
+          if (mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+          } else {
+            openMobileMenu();
+          }
+        });
+
+        mobileNavLinks.forEach(function(link) {
+          link.addEventListener('click', function() {
+            closeMobileMenu();
+          });
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+            mobileMenuBtn.focus();
+          }
+        });
+
+        // Close menu on resize to desktop
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768 && mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+          }
+        });
+      }
+
+      // Founder Modal Functionality
+      var founderData = {
+        ujjawal: {
+          name: 'Ujjawal Anand',
+          role: 'Co-Founder & Product Lead',
+          img: 'images/ujjawal.png',
+          bio: 'Ujjawal drives product vision and strategy at WebPersona. With a background in building developer tools and AI-powered experiences, he focuses on creating intuitive solutions that bridge the gap between complex technology and everyday users. Passionate about personalization and user experience.',
+          skills: ['Product Strategy', 'AI/ML', 'Developer Tools', 'UX Design', 'Growth'],
+          linkedin: 'https://www.linkedin.com/in/ujjawalanandofficial/',
+          github: 'https://github.com/anand-official'
+        },
+        kshitij: {
+          name: 'Kshitij Singh',
+          role: 'Co-Founder & Tech Lead',
+          img: 'images/kshitij.png',
+          bio: 'Kshitij is a product-minded engineer with deep expertise in cloud infrastructure and DevOps. He architects reliable, scalable systems that power WebPersona. His focus on performance and developer experience ensures the platform delivers instant personalization without compromise.',
+          skills: ['Cloud Architecture', 'DevOps', 'Node.js', 'Performance', 'Scalability'],
+          linkedin: 'https://www.linkedin.com/in/kshitij-singh-ks/',
+          github: 'https://github.com/Kshitij-KS'
+        }
+      };
+
+      var founderModal = document.getElementById('pw-founder-modal');
+      var modalClose = founderModal ? founderModal.querySelector('.pw-modal-close') : null;
+      var founderCards = document.querySelectorAll('.pw-founder[data-founder]');
+      var modalScrollPos = 0;
+
+      function openFounderModal(founderId) {
+        var data = founderData[founderId];
+        if (!data || !founderModal) return;
+
+        // Populate modal
+        document.getElementById('pw-modal-img').src = data.img;
+        document.getElementById('pw-modal-img').alt = data.name;
+        document.getElementById('pw-modal-name').textContent = data.name;
+        document.getElementById('pw-modal-role').textContent = data.role;
+        document.getElementById('pw-modal-bio').textContent = data.bio;
+
+        // Skills
+        var skillsContainer = document.getElementById('pw-modal-skills');
+        skillsContainer.innerHTML = data.skills.map(function(skill) {
+          return '<span class="pw-modal-skill">' + skill + '</span>';
+        }).join('');
+
+        // Links
+        var linksContainer = document.getElementById('pw-modal-links');
+        linksContainer.innerHTML = 
+          '<a href="' + data.linkedin + '" target="_blank" rel="noopener" class="pw-modal-link">📎 LinkedIn</a>' +
+          '<a href="' + data.github + '" target="_blank" rel="noopener" class="pw-modal-link">💻 GitHub</a>';
+
+        // Show modal
+        modalScrollPos = window.scrollY;
+        founderModal.classList.add('active');
+        founderModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        modalClose.focus();
+      }
+
+      function closeFounderModal() {
+        if (!founderModal) return;
+        founderModal.classList.remove('active');
+        founderModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      founderCards.forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          if (e.target.closest('.pw-founder-links a')) return;
+          openFounderModal(card.dataset.founder);
+        });
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openFounderModal(card.dataset.founder);
+          }
+        });
+      });
+
+      if (modalClose) {
+        modalClose.addEventListener('click', closeFounderModal);
+      }
+
+      if (founderModal) {
+        founderModal.addEventListener('click', function(e) {
+          if (e.target === founderModal) closeFounderModal();
+        });
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && founderModal && founderModal.classList.contains('active')) {
+          closeFounderModal();
+        }
+      });
 
       console.log('%c WebPersona ', 'background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 4px;', 'One script tag. Every visitor sees a different website.');
     })();
