@@ -388,6 +388,10 @@
       display: flex; align-items: center; justify-content: center;
       font-family: var(--font-head); font-size: 1.9rem; font-weight: 700; color: #fff;
       border: 2px solid var(--border-strong); box-shadow: 0 8px 24px rgba(99,102,241,0.2);
+      overflow: hidden;
+    }
+    .pw-founder-avatar img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .pw-founder h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
     .pw-founder-role { font-size: 0.9rem; color: var(--secondary); font-weight: 600; margin-bottom: 14px; }
@@ -461,7 +465,7 @@
       .pw-step:hover, .pw-tpl:hover, .pw-founder:hover { transform: translateY(-8px) scale(1.02); }
     }
 
-    /* ── Responsive ── */
+    /* ── Responsive (mobile only: desktop unchanged) ── */
     @media (max-width: 1024px) {
       .pw-hero { gap: 48px; padding: 120px 24px 80px; }
       .pw-section { padding: 80px 24px; }
@@ -484,33 +488,46 @@
       .pw-install-cta { flex-direction: column; align-items: center; }
     }
     @media (max-width: 600px) {
-      .pw-nav-inner { padding: 0 16px; height: 64px; }
+      .pw-nav-inner { padding: 0 16px; height: 64px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
       .pw-nav-links { display: none; }
-      .pw-hero { padding: 88px 16px 56px; gap: 32px; }
-      .pw-hero h1 { font-size: 1.85rem; }
+      .pw-nav-cta { min-height: 44px; padding: 12px 20px; font-size: 0.85rem; }
+      .pw-hero { padding: 88px 16px 56px; gap: 32px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+      .pw-hero h1 { font-size: 1.85rem; line-height: 1.12; }
       .pw-hero h2 { font-size: 1.1rem; }
       .pw-hero-sub { font-size: 0.98rem; }
-      .pw-hero-cta { padding: 14px 24px; font-size: 0.95rem; }
+      .pw-hero-cta { padding: 14px 24px; font-size: 0.95rem; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
       .pw-hero-personas { gap: 12px; padding: 20px; }
       .pw-hero-persona { width: 64px; height: 64px; font-size: 0.65rem; min-width: 64px; min-height: 64px; }
       .pw-hero-persona span { font-size: 1.4rem; }
       .pw-hero-browser-body { height: 240px; }
-      .pw-section { padding: 56px 16px; }
+      .pw-hero-label { font-size: 0.75rem; padding: 0 12px; text-align: center; white-space: normal; }
+      .pw-section { padding: 56px 16px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
       .pw-section-title h2 { font-size: 1.6rem; }
       .pw-section-title p { font-size: 0.95rem; }
       .pw-problem-card, .pw-step { padding: 24px 20px; }
-      .pw-install-box { border-radius: var(--radius-lg); }
+      .pw-code-block { padding: 16px 14px; font-size: 0.78rem; overflow-x: auto; -webkit-overflow-scrolling: touch; word-break: break-word; max-width: 100%; }
+      .pw-solution-list li { padding: 10px 0 10px 24px; font-size: 0.95rem; }
+      .pw-install-box { border-radius: var(--radius-lg); max-width: 100%; }
       .pw-install-head { padding: 12px 16px; }
-      .pw-install-code { padding: 16px 18px; font-size: 0.8rem; }
-      .pw-btn-primary, .pw-btn-ghost { padding: 14px 24px; width: 100%; max-width: 280px; justify-content: center; }
-      .pw-cta-section { padding: 64px 16px; }
+      .pw-install-code { padding: 16px 14px; font-size: 0.78rem; overflow-x: auto; -webkit-overflow-scrolling: touch; word-break: break-word; }
+      #pw-copy-snippet { min-height: 44px; min-width: 44px; }
+      .pw-btn-primary, .pw-btn-ghost { padding: 14px 24px; min-height: 48px; width: 100%; max-width: 280px; justify-content: center; }
+      .pw-cta-section { padding: 64px 16px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
       .pw-cta-section h2 { font-size: 1.6rem; }
+      .pw-cta-buttons { flex-direction: column; align-items: center; }
+      .pw-badges { gap: 10px; justify-content: center; }
+      .pw-badge { padding: 10px 16px; font-size: 0.85rem; }
+      .pw-proof { padding: 32px 24px; max-width: 100%; margin-left: auto; margin-right: auto; }
+      .pw-proof-num { font-size: 2.5rem; }
+      .pw-proof-label { font-size: 0.9rem; }
       .pw-founder { padding: 28px 24px; }
-      .pw-footer { padding: 32px 16px; font-size: 0.88rem; }
+      .pw-footer { padding: 32px 16px; font-size: 0.88rem; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); padding-bottom: max(32px, env(safe-area-inset-bottom)); }
     }
     @media (max-width: 380px) {
       .pw-hero h1 { font-size: 1.6rem; }
       .pw-hero-persona { width: 56px; height: 56px; min-width: 56px; min-height: 56px; font-size: 0.6rem; }
+      .pw-install-code { font-size: 0.72rem; }
+      .pw-code-block { font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -715,7 +732,9 @@
       </div>
       <div class="pw-founders">
         <div class="pw-founder">
-          <div class="pw-founder-avatar" aria-hidden="true">UA</div>
+          <div class="pw-founder-avatar" aria-hidden="true">
+            <img src="https://drive.google.com/uc?export=view&id=10ghWl6HXyTst8B1H-CctRVOY9K5dFP6c" alt="Ujjawal Anand" width="100" height="100" loading="lazy">
+          </div>
           <h3>Ujjawal Anand</h3>
           <div class="pw-founder-role">Co-Founder</div>
           <p class="pw-founder-bio">Driving product and vision. Previously building developer tools and AI-powered experiences.</p>
@@ -725,7 +744,9 @@
           </div>
         </div>
         <div class="pw-founder">
-          <div class="pw-founder-avatar" aria-hidden="true">KS</div>
+          <div class="pw-founder-avatar" aria-hidden="true">
+            <img src="https://drive.google.com/uc?export=view&id=1MPkJMXt5uuI7YEHn5R3kAMTqcbj9c7RG" alt="Kshitij Singh" width="100" height="100" loading="lazy">
+          </div>
           <h3>Kshitij Singh</h3>
           <div class="pw-founder-role">Co-Founder</div>
           <p class="pw-founder-bio">Product‑minded builder with a cloud and DevOps edge, focused on reliable, scalable experiences.</p>
