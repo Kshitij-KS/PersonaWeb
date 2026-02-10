@@ -421,100 +421,114 @@
 
     .pw-modal-overlay {
       position: fixed; inset: 0; z-index: 10000;
-      background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       display: flex; align-items: center; justify-content: center;
-      padding: 20px; opacity: 0; visibility: hidden;
+      padding: 24px; opacity: 0; visibility: hidden;
       transition: opacity 0.3s var(--ease), visibility 0.3s;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
     }
     .pw-modal-overlay.active { opacity: 1; visibility: visible; }
     .pw-modal {
       background: var(--bg-elevated); border: 1px solid var(--border-strong);
-      border-radius: var(--radius-xl); max-width: 480px; width: 100%;
-      max-height: 90vh; overflow-y: auto; position: relative;
+      border-radius: var(--radius-xl); max-width: 520px; width: 100%;
+      position: relative; margin: auto;
       transform: scale(0.9) translateY(20px); opacity: 0;
       transition: transform 0.35s var(--spring), opacity 0.3s var(--ease);
-      box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05) inset;
     }
     .pw-modal-overlay.active .pw-modal { transform: scale(1) translateY(0); opacity: 1; }
     .pw-modal-close {
-      position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 50%; color: var(--text2); font-size: 1.25rem;
+      position: absolute; top: 16px; right: 16px; width: 44px; height: 44px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%; color: var(--text2); font-size: 1.5rem; line-height: 1;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: all 0.25s var(--ease); z-index: 10;
       -webkit-tap-highlight-color: transparent;
     }
-    .pw-modal-close:hover { background: var(--surface-hover); color: var(--text); border-color: var(--border-strong); }
+    .pw-modal-close:hover { background: rgba(255,255,255,0.15); color: var(--text); border-color: rgba(255,255,255,0.2); }
     .pw-modal-close:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
     .pw-modal-header {
-      padding: 48px 32px 24px; text-align: center;
-      background: linear-gradient(180deg, rgba(99,102,241,0.08) 0%, transparent 100%);
+      padding: 40px 40px 28px; text-align: center;
+      background: linear-gradient(180deg, rgba(99,102,241,0.1) 0%, transparent 100%);
       border-bottom: 1px solid var(--border);
     }
     .pw-modal-avatar {
-      width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
-      background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(168,85,247,0.25));
+      width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 18px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.4), rgba(168,85,247,0.3));
       display: flex; align-items: center; justify-content: center;
-      border: 3px solid var(--border-strong); box-shadow: 0 12px 32px rgba(99,102,241,0.25);
+      border: 3px solid rgba(255,255,255,0.15); box-shadow: 0 12px 32px rgba(99,102,241,0.3);
       overflow: hidden;
     }
     .pw-modal-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .pw-modal-name { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .pw-modal-name { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
     .pw-modal-role { font-size: 1rem; color: var(--secondary); font-weight: 600; }
-    .pw-modal-body { padding: 28px 32px 32px; }
-    .pw-modal-bio { font-size: 1rem; color: var(--text2); line-height: 1.7; margin-bottom: 24px; text-align: center; }
-    .pw-modal-section { margin-bottom: 20px; }
+    .pw-modal-body { padding: 28px 40px 36px; }
+    .pw-modal-bio { font-size: 0.95rem; color: var(--text2); line-height: 1.75; margin-bottom: 28px; text-align: center; }
+    .pw-modal-section { margin-bottom: 24px; text-align: center; }
     .pw-modal-section-title {
-      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--text3); margin-bottom: 10px; font-weight: 600;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--text3); margin-bottom: 12px; font-weight: 600;
     }
     .pw-modal-skills {
-      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
     }
     .pw-modal-skill {
-      padding: 8px 16px; background: var(--surface); border: 1px solid var(--border);
+      padding: 8px 18px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
       border-radius: 100px; font-size: 0.85rem; color: var(--text2);
+      transition: all 0.2s var(--ease);
     }
+    .pw-modal-skill:hover { background: rgba(99,102,241,0.18); border-color: rgba(99,102,241,0.35); }
     .pw-modal-links {
-      display: flex; gap: 12px; justify-content: center; margin-top: 24px;
+      display: flex; gap: 14px; justify-content: center; margin-top: 28px;
     }
     .pw-modal-link {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); font-size: 0.9rem; font-weight: 500;
-      color: var(--text2); text-decoration: none;
+      padding: 14px 28px; background: var(--surface); border: 1px solid var(--border-strong);
+      border-radius: var(--radius); font-size: 0.9rem; font-weight: 600;
+      color: var(--text); text-decoration: none;
       transition: all 0.25s var(--ease);
       -webkit-tap-highlight-color: transparent;
     }
     .pw-modal-link:hover {
-      background: rgba(99,102,241,0.15); color: var(--secondary);
-      border-color: rgba(99,102,241,0.3); text-decoration: none;
+      background: var(--primary); color: #fff;
+      border-color: transparent; text-decoration: none;
+      transform: translateY(-2px); box-shadow: 0 8px 24px var(--primary-glow);
     }
     .pw-modal-link:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
 
     /* Modal Mobile Styles */
     @media (max-width: 600px) {
-      .pw-modal-overlay { padding: 12px; align-items: flex-end; }
+      .pw-modal-overlay { padding: 0; align-items: flex-end; }
       .pw-modal {
-        max-height: 85vh; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-        margin-bottom: 0;
+        max-height: 90vh; border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        margin-bottom: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
       }
       .pw-modal-overlay.active .pw-modal { transform: scale(1) translateY(0); }
-      .pw-modal-header { padding: 40px 24px 20px; }
-      .pw-modal-avatar { width: 100px; height: 100px; margin-bottom: 16px; }
-      .pw-modal-name { font-size: 1.3rem; }
+      .pw-modal-header { padding: 36px 24px 20px; }
+      .pw-modal-avatar { width: 90px; height: 90px; margin-bottom: 14px; }
+      .pw-modal-name { font-size: 1.35rem; }
       .pw-modal-role { font-size: 0.9rem; }
-      .pw-modal-body { padding: 20px 24px 28px; }
-      .pw-modal-bio { font-size: 0.95rem; margin-bottom: 20px; }
-      .pw-modal-close { top: 12px; right: 12px; width: 36px; height: 36px; font-size: 1.1rem; }
-      .pw-modal-links { flex-direction: column; gap: 10px; }
-      .pw-modal-link { width: 100%; justify-content: center; padding: 14px 24px; }
+      .pw-modal-body { padding: 24px 24px 32px; }
+      .pw-modal-bio { font-size: 0.9rem; margin-bottom: 24px; line-height: 1.7; }
+      .pw-modal-close { top: 14px; right: 14px; width: 40px; height: 40px; font-size: 1.3rem; }
+      .pw-modal-links { flex-direction: column; gap: 12px; }
+      .pw-modal-link { width: 100%; justify-content: center; padding: 16px 24px; }
     }
     @media (max-width: 380px) {
-      .pw-modal-avatar { width: 88px; height: 88px; }
-      .pw-modal-name { font-size: 1.2rem; }
-      .pw-modal-skill { padding: 6px 12px; font-size: 0.8rem; }
+      .pw-modal-avatar { width: 80px; height: 80px; }
+      .pw-modal-name { font-size: 1.15rem; }
+      .pw-modal-role { font-size: 0.85rem; }
+      .pw-modal-skill { padding: 6px 12px; font-size: 0.78rem; }
+      .pw-modal-header { padding: 32px 20px 18px; }
+      .pw-modal-body { padding: 20px 20px 28px; }
+      .pw-modal-bio { font-size: 0.85rem; }
     }
+
+    /* Modal scrollbar styling */
+    .pw-modal::-webkit-scrollbar { width: 6px; }
+    .pw-modal::-webkit-scrollbar-track { background: transparent; }
+    .pw-modal::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+    .pw-modal::-webkit-scrollbar-thumb:hover { background: var(--text3); }
 
     /* ── Footer ── */
     .pw-footer {
