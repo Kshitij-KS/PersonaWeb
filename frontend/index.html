@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>WebPersona — Every visitor sees a different website</title>
   <meta name="description" content="AI that personalizes your site in real-time. One script tag. Zero dependencies. Instant magic.">
   <meta property="og:title" content="WebPersona — AI-Powered Website Personalization">
@@ -76,7 +76,7 @@
     }
     @keyframes pw-dot-grid { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.5; } }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: var(--font); background: var(--bg); color: var(--text);
       line-height: 1.65; overflow-x: hidden; font-size: 17px; -webkit-font-smoothing: antialiased;
@@ -338,6 +338,7 @@
     }
     .pw-btn-ghost:hover { border-color: var(--text3); color: var(--text); background: var(--surface); text-decoration: none; }
     .pw-btn-primary:focus-visible, .pw-btn-ghost:focus-visible, .pw-hero-cta:focus-visible, .pw-nav-cta:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+    .pw-hero-cta, .pw-nav-cta, .pw-btn-primary, .pw-btn-ghost, .pw-hero-persona { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
     /* ── Technical ── */
     .pw-badges { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 28px; }
@@ -523,11 +524,20 @@
       .pw-founder { padding: 28px 24px; }
       .pw-footer { padding: 32px 16px; font-size: 0.88rem; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); padding-bottom: max(32px, env(safe-area-inset-bottom)); }
     }
+    @media (max-width: 480px) {
+      .pw-hero-browser-body { height: 220px; }
+      .pw-section-title h2 { font-size: 1.45rem; }
+      .pw-founder-avatar { width: 88px; height: 88px; }
+      .pw-founder-avatar img { width: 100%; height: 100%; object-fit: cover; }
+      .pw-founder { padding: 24px 20px; }
+    }
     @media (max-width: 380px) {
       .pw-hero h1 { font-size: 1.6rem; }
       .pw-hero-persona { width: 56px; height: 56px; min-width: 56px; min-height: 56px; font-size: 0.6rem; }
       .pw-install-code { font-size: 0.72rem; }
       .pw-code-block { font-size: 0.72rem; }
+      .pw-founder-avatar { width: 80px; height: 80px; }
+      .pw-proof-num { font-size: 2.25rem; }
     }
   </style>
   <script>
@@ -737,7 +747,7 @@
       <div class="pw-founders">
         <div class="pw-founder">
           <div class="pw-founder-avatar" aria-hidden="true">
-            <img src="images/ujjawal.jpg" alt="Ujjawal Anand" width="100" height="100" loading="lazy">
+            <img src="images/ujjawal.png" alt="Ujjawal Anand" width="100" height="100" loading="lazy">
           </div>
           <h3>Ujjawal Anand</h3>
           <div class="pw-founder-role">Co-Founder</div>
@@ -749,7 +759,7 @@
         </div>
         <div class="pw-founder">
           <div class="pw-founder-avatar" aria-hidden="true">
-            <img src="images/kshitij.jpg" alt="Kshitij Singh" width="100" height="100" loading="lazy">
+            <img src="images/kshitij.png" alt="Kshitij Singh" width="100" height="100" loading="lazy">
           </div>
           <h3>Kshitij Singh</h3>
           <div class="pw-founder-role">Co-Founder</div>

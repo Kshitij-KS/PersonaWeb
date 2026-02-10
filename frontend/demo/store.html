@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>TechVault — Premium Monitors & Displays</title>
   <meta name="description" content="Shop the best 4K gaming monitors, ultrawide displays, and professional screens. Free shipping on orders over $99.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
@@ -10,6 +10,7 @@
   <style>
     /* ─── TechVault Store Styles (Shopify Dawn-inspired) ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-tap-highlight-color: transparent; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #1a1a2e; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
@@ -167,14 +168,20 @@
     }
     @media (max-width: 640px) {
       body { overflow-x: hidden; }
-      .announce { padding: 8px max(1rem, env(safe-area-inset-left)); font-size: 0.75rem; }
+      .announce {
+        padding: 8px max(1rem, env(safe-area-inset-left));
+        font-size: 0.75rem;
+        line-height: 1.4;
+        white-space: normal;
+        word-wrap: break-word;
+      }
       .nav-inner {
         padding: 0 max(1rem, env(safe-area-inset-left)) 0 max(1rem, env(safe-area-inset-right));
         height: 56px; min-height: 56px;
       }
       .nav-logo { font-size: 1.2rem; }
       .nav-links { display: none; }
-      .nav-search { width: 120px; min-width: 0; padding: 8px 10px; font-size: 0.8rem; }
+      .nav-search { width: 120px; min-width: 0; padding: 8px 10px; font-size: 16px; }
       .nav-cart { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
       .breadcrumbs {
         padding: 10px max(1rem, env(safe-area-inset-left));
@@ -198,7 +205,7 @@
       .review-card { padding: 16px 18px; }
       .newsletter { padding: 2rem max(1rem, env(safe-area-inset-left)); }
       .newsletter-form { flex-direction: column; max-width: 100%; gap: 10px; }
-      .newsletter-input { min-height: 44px; }
+      .newsletter-input { min-height: 44px; font-size: 16px; }
       .newsletter-btn { min-height: 44px; padding: 12px 20px; }
       .footer {
         padding: 2rem max(1rem, env(safe-area-inset-left)) max(2rem, env(safe-area-inset-bottom));
@@ -212,9 +219,17 @@
         padding: 8px 12px; font-size: 0.7rem;
       }
     }
+    @media (max-width: 480px) {
+      .products { padding: 1.5rem max(1rem, env(safe-area-inset-left)); }
+      .product-info { padding: 14px 16px; }
+      .trust-item { padding: 0.75rem 0.5rem; }
+      .trust-icon { font-size: 1.75rem; }
+    }
     @media (max-width: 380px) {
       .nav-search { width: 100px; }
       .section-title h2 { font-size: 1.3rem; }
+      .product-name { font-size: 0.9rem; }
+      .product-price { font-size: 1rem; }
     }
   </style>
   <script>

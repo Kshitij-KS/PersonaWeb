@@ -66,6 +66,8 @@
   font-size: 1.1rem; font-weight: 700; cursor: pointer; letter-spacing: 0.3px;
   transition: all 0.3s cubic-bezier(0.16,1,0.3,1); position: relative;
   overflow: hidden; font-family: inherit; line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .pw-cta:hover { transform: translateY(-3px); }
 .pw-cta:active { transform: translateY(0) scale(0.97); transition-duration: 0.1s; }
@@ -518,9 +520,14 @@
 }
 @media (max-width: 480px) {
   .pw-hero { padding: 1.5rem max(1rem, env(safe-area-inset-left)); min-height: 340px; }
-  .pw-headline { font-size: 1.6rem; }
+  .pw-headline { font-size: 1.6rem; line-height: 1.2; }
   .pw-subheadline { font-size: 0.95rem; }
-  .pw-cta { padding: 12px 24px; font-size: 0.95rem; }
+  .pw-cta { padding: 12px 24px; font-size: 0.95rem; min-height: 48px; }
   .pw-debug { left: max(8px, env(safe-area-inset-left)); right: max(8px, env(safe-area-inset-right)); }
   .pw-debug-val { font-size: 14px; }
+  .pw-debug-head { padding: 10px 12px; font-size: 13px; }
+}
+@media (max-width: 360px) {
+  .pw-headline { font-size: 1.4rem; }
+  .pw-cta { padding: 10px 20px; font-size: 0.9rem; }
 }
