@@ -1,4 +1,4 @@
-# WebPersona.ai
+# WebPersona 
 
 **Every visitor gets a different website. Automatically.**
 
@@ -10,7 +10,7 @@ Built for **MIT HackNation 2026** — VC Track
 
 ## What It Does
 
-WebPersona.ai is a single JavaScript snippet that transforms any website's hero section based on visitor intent. A gamer from Reddit sees a gaming-themed hero. A deal hunter from an email campaign sees a flash sale. A researcher from Google sees specs and comparisons.
+WebPersona  is a single JavaScript snippet that transforms any website's hero section based on visitor intent. A gamer from Reddit sees a gaming-themed hero. A deal hunter from an email campaign sees a flash sale. A researcher from Google sees specs and comparisons.
 
 **No backend needed. No config needed. Just paste one script tag.**
 
@@ -123,7 +123,7 @@ The API receives the collected signals and returns the same decision object form
 ## File Structure
 
 ```
-webpersona.ai/
+webpersona /
 ├── index.html          Landing page (the product)
 ├── webpersona.js       The engine (single injectable snippet)
 ├── webpersona.css      Widget + template styles
@@ -142,7 +142,7 @@ webpersona.ai/
 
 ## Team
 
-**WebPersona.ai** — MIT HackNation 2026, VC Track
+**WebPersona **
 
 ---
 
